@@ -13,10 +13,10 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white">
       <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-4">
         <a href="#" className="flex items-center space-x-3">
-          <img src={logo} className="w-8" />
+          <img src={logo} className="w-12" />
           <span className="self-center text-2xl whitespace-nowrap text-text">
             qahwaBlk
           </span>
@@ -42,16 +42,15 @@ const Navbar = () => {
           id="navbar-default"
         >
           <ul
-            className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg 
-        bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 
-        md:bg-transparent"
+            className="font-medium flex flex-col mt-4 md:mt-0 border rounded-lg 
+        bg-white md:flex-row"
           >
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
-                  className="block py-2 px-3 text-text rounded-sm hover:bg-background
-                md:hover:bg-transparent md:border-0 md:hover:text-white md:p-0 transition-colors duration-300"
+                  className="block py-2 px-3 text-text rounded-sm hover:bg-background  hover:text-white
+                md:hover:bg-background md:border-0 md:px-4 md:py-2 md:hover:text-white transition-colors duration-300"
                 >
                   {link.name}
                 </a>

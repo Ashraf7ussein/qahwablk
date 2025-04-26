@@ -21,6 +21,9 @@ const Hero = () => {
         <p className="mt-10 text-white text-base md:text-lg max-w-xl drop-shadow-md leading-relaxed">
           Delicious coffee, every day, for everyone, at a reasonable price.
         </p>
+        <button className="px-6 py-3 mt-8 bg-white text-black rounded-full hover:bg-gray-100 cursor-pointer transition duration-300">
+          See Menu
+        </button>
       </div>
     </section>
   );

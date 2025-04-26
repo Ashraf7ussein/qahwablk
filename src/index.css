@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* src/index.css or src/styles.css */
+
 @theme {
   --color-background: #c5bd9b;
   --color-text: #2B1D1A;
@@ -17,6 +19,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.secondary-font {
+  font-family: "Cormorant Garamond", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+
 /*
 a {
   font-weight: 500;

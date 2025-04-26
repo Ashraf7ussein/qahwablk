@@ -11,11 +11,16 @@ const Hero = () => {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       />
-      <div className="absolute top-20 md:top-32 left-0 w-full flex justify-center items-center z-10 flex-col">
-        <h1 className="text-7xl md:text-9xl secondary-font text-white underline decoration-[0.5px] underline-offset-[12px]">
+      <div className="absolute inset-0 flex flex-col justify-center items-center z-10 text-center px-4">
+        <h1 className="secondary-font underline decoration-[0.5px] underline-offset-[12px] text-white font-bold text-6xl md:text-8xl tracking-wide drop-shadow-lg">
           qahwaBlk
         </h1>
-        <span className="secondary-font">Since 2019</span>
+        <span className="text-white uppercase tracking-[0.25em] text-sm md:text-base mt-4 drop-shadow-md">
+          Since 2019
+        </span>
+        <p className="mt-10 text-white text-base md:text-lg max-w-xl drop-shadow-md leading-relaxed">
+          Delicious coffee, every day, for everyone, at a reasonable price.
+        </p>
       </div>
     </section>
   );

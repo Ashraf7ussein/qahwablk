@@ -2,6 +2,7 @@ import Card from "./Card";
 import bottle from "../assets/bottle.png";
 import coffeeBag from "../assets/coffeeBag.png";
 import { Link } from "react-router-dom";
+import { IoMdArrowForward } from "react-icons/io";
 
 const Products = () => {
   const products = [
@@ -31,9 +32,17 @@ const Products = () => {
           <Card key={index} product={product} index={index} />
         ))}
       </div>
-      <button className=" px-6 py-3 mt-8 bg-white text-black rounded-full hover:bg-gray-100 cursor-pointer transition duration-300">
-        <Link to="/products">See All</Link>
-      </button>
+
+      <Link
+        to="/merchandise"
+        className="group px-6 py-3 mt-8 border-1 text-black flex items-center gap-5 rounded-full hover:bg-gray-100 cursor-pointer transition duration-300"
+      >
+        <span>See All</span>
+        <IoMdArrowForward
+          size={24}
+          className="transition-transform duration-300 group-hover:translate-x-2"
+        />
+      </Link>
     </section>
   );
 };

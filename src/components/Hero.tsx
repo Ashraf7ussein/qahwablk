@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import video from "../assets/video.mp4";
+import { IoMdArrowForward } from "react-icons/io";
 
 const Hero = () => {
   return (
@@ -22,9 +23,16 @@ const Hero = () => {
         <p className="mt-10 text-white text-base md:text-lg max-w-xl drop-shadow-md leading-relaxed">
           Delicious coffee, every day, for everyone, at a reasonable price.
         </p>
-        <button className="px-6 py-3 mt-8 bg-white text-black rounded-full hover:bg-gray-100 cursor-pointer transition duration-300">
-          <Link to={"/menu"}>See Menu</Link>
-        </button>
+        <Link
+          to="/menu"
+          className="group px-6 py-3 mt-8 border-1 text-black flex items-center gap-5 rounded-full hover:bg-gray-100 cursor-pointer transition duration-300"
+        >
+          <span>See Menu</span>
+          <IoMdArrowForward
+            size={24}
+            className="transition-transform duration-300 group-hover:translate-x-2"
+          />
+        </Link>
       </div>
     </section>
   );

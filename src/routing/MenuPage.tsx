@@ -25,6 +25,8 @@ const MenuPage = () => {
         { enName: "Lotus Latte", price: "2 JOD" },
         { enName: "Caramel Latte", price: "2 JOD" },
         { enName: "Hazelnut Latte", price: "2 JOD" },
+        { enName: "White Mocha", price: "2 JOD" },
+        { enName: "Khareeef", price: "2 JOD" },
       ],
     },
     {
@@ -42,7 +44,7 @@ const MenuPage = () => {
   ];
 
   return (
-    <div className="max-w-md mx-auto p-6 mt-35">
+    <div className="max-w-md mx-auto p-6 mt-30">
       {menuItems.map((category, catIndex) => (
         <div key={catIndex} className="mb-8">
           {/* Render the category title */}
@@ -51,7 +53,7 @@ const MenuPage = () => {
           </h2>
 
           {/* Render the items inside the category */}
-          <div className="">
+          <div>
             {category.items.map((item, itemIndex) => (
               <div
                 key={itemIndex}

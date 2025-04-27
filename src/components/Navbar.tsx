@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const navLinks = [
   { name: "Menu", href: "/menu" },
-  { name: "Products", href: "/products" },
+  { name: "Merchandise", href: "/merchandise" },
   { name: "Locations", href: "/locations" },
 ];
 
@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white">
-      <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-4">
+      <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-2 shadow-lg">
         <Link to="/" className="flex items-center space-x-3">
           <img src={logo} className="w-12" />
           <span className="self-center text-2xl whitespace-nowrap text-text">

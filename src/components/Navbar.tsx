@@ -2,11 +2,12 @@ import { useState } from "react";
 import logo from "../assets/logo.png";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const navLinks = [
-  { name: "Menu", href: "#menu" },
-  { name: "Gallery", href: "#gallery" },
-  { name: "Locations", href: "#locations" },
+  { name: "Menu", href: "/menu" },
+  { name: "Products", href: "/products" },
+  { name: "Locations", href: "/locations" },
 ];
 
 const Navbar = () => {
@@ -15,12 +16,12 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white">
       <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-4">
-        <a href="#" className="flex items-center space-x-3">
+        <Link to="/" className="flex items-center space-x-3">
           <img src={logo} className="w-12" />
           <span className="self-center text-2xl whitespace-nowrap text-text">
             qahwaBlk
           </span>
-        </a>
+        </Link>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
@@ -47,13 +48,13 @@ const Navbar = () => {
           >
             {navLinks.map((link) => (
               <li key={link.name}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   className="block py-2 px-3 text-text rounded-sm hover:bg-background  hover:text-white
                 md:hover:bg-background md:border-0 md:px-4 md:py-2 md:hover:text-white transition-colors duration-300"
                 >
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

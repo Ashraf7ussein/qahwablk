@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import video from "../assets/video.mp4";
 
 const Hero = () => {
@@ -22,7 +23,7 @@ const Hero = () => {
           Delicious coffee, every day, for everyone, at a reasonable price.
         </p>
         <button className="px-6 py-3 mt-8 bg-white text-black rounded-full hover:bg-gray-100 cursor-pointer transition duration-300">
-          See Menu
+          <Link to={"/menu"}>See Menu</Link>
         </button>
       </div>
     </section>

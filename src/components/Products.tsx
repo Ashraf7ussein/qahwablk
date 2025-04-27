@@ -1,6 +1,7 @@
 import Card from "./Card";
 import bottle from "../assets/bottle.png";
 import coffeeBag from "../assets/coffeeBag.png";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const products = [
@@ -31,7 +32,7 @@ const Products = () => {
         ))}
       </div>
       <button className=" px-6 py-3 mt-8 bg-white text-black rounded-full hover:bg-gray-100 cursor-pointer transition duration-300">
-        See All
+        <Link to="/products">See All</Link>
       </button>
     </section>
   );

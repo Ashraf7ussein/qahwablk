@@ -3,55 +3,58 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import logo from "../assets/logo.png";
 import { useState } from "react";
-
-const schema = z.object({
-  name: z
-    .string()
-    .min(5, "Name must be at least 5 characters")
-    .max(50, "Name must be at most 50 characters"),
-  phoneNumber: z
-    .string()
-    .regex(/^(0|\+962)7[987]\d{7}$/, "Invalid phone number format."),
-  livingArea: z.string().min(2, "Living area is required"),
-  age: z.coerce
-    .number()
-    .min(18, "Minimum age is 18")
-    .max(65, "Maximum age is 65"),
-  gender: z.enum(["male", "female"], {
-    errorMap: () => ({ message: "Please select your gender" }),
-  }),
-  howDidYouHearAboutUs: z.enum(
-    ["online", "blkEmployee", "jordanUni", "ahliUni", "linkedIn", "other"],
-    {
-      errorMap: () => ({ message: "Please select an option" }),
-    }
-  ),
-  jobType: z.enum(["fullTime", "partTime"], {
-    errorMap: () => ({ message: "Please select Full Time or Part Time" }),
-  }),
-  studying: z.enum(["yes", "no"], {
-    errorMap: () => ({ message: "Please select if you are studying" }),
-  }),
-  working: z.enum(["yes", "no"], {
-    errorMap: () => ({ message: "Please select if you are working" }),
-  }),
-  workingExperience: z
-    .string()
-    .min(3, "working Experience must be at least 3 characters")
-    .max(50, "Name must be at most 50 characters"),
-  educationLevel: z.enum(["highSchool", "diploma", "university", "masters"], {
-    errorMap: () => ({ message: "Please select your education level" }),
-  }),
-  favoriteDrink: z.string().min(1, "Favorite drink is required"),
-  whyWorkWithUs: z.string().min(1, "Reason for joining is required"),
-  photo: z
-    .instanceof(FileList)
-    .refine((files) => files.length > 0, "Please upload a photo"),
-});
-
-type FormData = z.infer<typeof schema>;
+import { useTranslation } from "react-i18next";
 
 const CareersPage = () => {
+  const { t } = useTranslation();
+
+  const schema = z.object({
+    name: z
+      .string()
+      .min(5, { message: t("name_min") })
+      .max(50, { message: t("name_max") }),
+    phoneNumber: z
+      .string()
+      .regex(/^(0|\+962)7[987]\d{7}$/, { message: t("phone_invalid") }),
+    livingArea: z.string().min(2, { message: t("living_area_required") }),
+    age: z.coerce
+      .number()
+      .min(18, { message: t("age_min") })
+      .max(65, { message: t("age_max") }),
+    gender: z.enum(["male", "female"], {
+      errorMap: () => ({ message: t("gender_select") }),
+    }),
+    howDidYouHearAboutUs: z.enum(
+      ["online", "blkEmployee", "jordanUni", "ahliUni", "linkedIn", "other"],
+      {
+        errorMap: () => ({ message: t("option_select") }),
+      }
+    ),
+    jobType: z.enum(["fullTime", "partTime"], {
+      errorMap: () => ({ message: t("job_type_select") }),
+    }),
+    studying: z.enum(["yes", "no"], {
+      errorMap: () => ({ message: t("studying_select") }),
+    }),
+    working: z.enum(["yes", "no"], {
+      errorMap: () => ({ message: t("working_select") }),
+    }),
+    workingExperience: z
+      .string()
+      .min(3, { message: t("work_exp_min") })
+      .max(50, { message: t("work_exp_max") }),
+    educationLevel: z.enum(["highSchool", "diploma", "university", "masters"], {
+      errorMap: () => ({ message: t("education_select") }),
+    }),
+    favoriteDrink: z.string().min(1, { message: t("drink_required") }),
+    whyWorkWithUs: z.string().min(1, { message: t("join_reason_required") }),
+    photo: z
+      .instanceof(FileList)
+      .refine((files) => files.length > 0, { message: t("photo_upload") }),
+  });
+
+  type FormData = z.infer<typeof schema>;
+
   const {
     register,
     handleSubmit,
@@ -652,7 +655,7 @@ const CareersPage = () => {
               : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >
-          {isSending ? "Sending..." : "Submit"}
+          {isSending ? t("sending") : t("submit")}
         </button>
 
         {result && (

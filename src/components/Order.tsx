@@ -1,7 +1,9 @@
 import careem from "../assets/careem.png";
 import talabat from "../assets/talabat.webp";
+import { useTranslation } from "react-i18next";
 
 const Order = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-5 border-t-1 py-20">
       <div className="max-w-screen-xl mx-auto px-4 text-center">
@@ -12,7 +14,8 @@ const Order = () => {
               gap-2 px-5 py-2.5 inline-flex items-center transition-all duration-300 hover:cursor-pointer"
           >
             <a href="https://www.talabat.com" target="_blank"></a>
-            Order from{"  "}
+            {t("orderFrom")}
+            {"  "}
             <img src={careem} alt="Talabat" className="h-5" />
           </button>
           <button
@@ -21,7 +24,8 @@ const Order = () => {
               gap-1 px-5 py-2.5 inline-flex items-center transition-all duration-300 hover:cursor-pointer"
           >
             <a href="https://www.talabat.com" target="_blank"></a>
-            Order from{"  "}
+            {t("orderFrom")}
+            {"  "}
             <img src={talabat} alt="Talabat" className="h-7" />
           </button>
         </div>

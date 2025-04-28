@@ -2,22 +2,26 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
-
-const schema = z.object({
-  name: z
-    .string()
-    .min(5, "Name must be at least 5 characters")
-    .max(50, "Name must be at most 50 characters"),
-  phoneNumber: z
-    .string()
-    .regex(/^(0|\+962)7[987]\d{7}$/, "Invalid phone number format."),
-  email: z.string().email("Invalid email address."),
-  topic: z.string().min(3, "Topic must be at least 3 characters."),
-});
-
-type FormData = z.infer<typeof schema>;
+import { useTranslation } from "react-i18next";
 
 const ContactUsPage = () => {
+  const { t } = useTranslation();
+
+  const schema = z.object({
+    name: z
+      .string()
+      .min(5, { message: t("name_min") })
+      .max(50, { message: t("name_max") }),
+    phoneNumber: z
+      .string()
+      .regex(/^(0|\+962)7[987]\d{7}$/, { message: t("phone_invalid") }),
+    email: z.string().email({ message: t("email_invalid") }),
+
+    topic: z.string().min(3, { message: t("topic_min") }),
+  });
+
+  type FormData = z.infer<typeof schema>;
+
   const {
     register,
     handleSubmit,
@@ -64,7 +68,7 @@ const ContactUsPage = () => {
       setIsSending(false);
       setTimeout(() => {
         setResult(null);
-      }, 5000); // Remove the message after 5 seconds
+      }, 5000);
     }
   };
 
@@ -142,7 +146,7 @@ const ContactUsPage = () => {
             htmlFor="topic"
             className="block mb-2 text-lg font-medium text-gray-900"
           >
-            Topic | الموضوع *
+            Topic - الموضوع *
           </label>
           <input
             type="text"
@@ -165,7 +169,7 @@ const ContactUsPage = () => {
               : "bg-blue-500 hover:bg-blue-600 text-white"
           }`}
         >
-          {isSending ? "Sending..." : "Submit"}
+          {isSending ? t("sending") : t("submit")}
         </button>
 
         {result && (

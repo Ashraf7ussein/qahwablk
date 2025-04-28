@@ -6,6 +6,7 @@ import {
   FaYoutube,
   FaTwitter,
 } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const socialLinks = [
   {
@@ -47,12 +48,14 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const { t } = useTranslation(); // Import t function for translation
+
   return (
     <footer className="text-white border-t pt-6 pb-6">
       <div className="w-full mx-auto max-w-screen-xl px-4 md:flex md:items-center md:justify-between">
         <span className="text-sm text-gray-400 sm:text-center">
-          © 2025 <span className="font-semibold text-white">qahwaBlk™</span>.
-          All Rights Reserved.
+          © 2025 <span className="font-semibold text-white">qahwaBlk™</span>.{" "}
+          {t("allRights")}
         </span>
 
         <ul className="flex gap-6 mt-4 md:mt-0 justify-center">
@@ -69,8 +72,9 @@ const Footer = () => {
             </li>
           ))}
         </ul>
+
         <p className="text-center text-sm text-gray-400 mt-4">
-          Developed by{" "}
+          {t("developedBy")}&nbsp;
           <a
             href="https://hrafportfolio.vercel.app"
             target="_blank"

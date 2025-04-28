@@ -1,20 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/logo.png";
 import { HiOutlineMenu } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Menu", href: "/menu" },
-  { name: "Merchandise", href: "/merchandise" },
-  { name: "Locations", href: "/locations" },
-  { name: "Careers", href: "/careers" },
-  { name: "ContactUs", href: "/contactUs" },
+  { name: "home", href: "/" },
+  { name: "menu", href: "/menu" },
+  { name: "merchandise", href: "/merchandise" },
+  { name: "locations", href: "/locations" },
+  { name: "careers", href: "/careers" },
+  { name: "contactUs", href: "/contactUs" },
+];
+
+const languages = [
+  { code: "en", label: "EN" },
+  { code: "ar", label: "عربي" },
 ];
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  };
+
+  useEffect(() => {
+    if (i18n.language === "ar") {
+      document.body.classList.add("arLang");
+      document.body.setAttribute("dir", "rtl");
+    } else {
+      document.body.classList.remove("arLang");
+      document.body.setAttribute("dir", "ltr");
+    }
+
+    console.log("Body classes after language change:", document.body.classList);
+  }, [i18n.language]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white">
@@ -22,7 +45,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center space-x-3">
           <img src={logo} className="w-12" />
           <span className="self-center text-2xl whitespace-nowrap text-text">
-            qahwaBlk
+            {t("qahwablk")}
           </span>
         </Link>
 
@@ -56,10 +79,26 @@ const Navbar = () => {
                   className="block py-2 px-3 text-text rounded-sm hover:bg-background  hover:text-white
                 md:hover:bg-background md:border-0 md:px-4 md:py-2 md:hover:text-white transition-colors duration-300"
                 >
-                  {link.name}
+                  {t(link.name)}
                 </Link>
               </li>
             ))}
+
+            <li className="flex items-center space-x-2 md:ml-4 mt-2 md:mt-0">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  onClick={() => changeLanguage(lang.code)}
+                  className={`px-2 py-1 rounded text-sm ${
+                    i18n.language === lang.code
+                      ? "bg-background text-white"
+                      : "text-text hover:bg-background hover:text-white"
+                  } transition-colors duration-300`}
+                >
+                  {lang.label}
+                </button>
+              ))}
+            </li>
           </ul>
         </div>
       </div>

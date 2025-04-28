@@ -1,0 +1,104 @@
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+
+const resources = {
+  en: {
+    translation: {
+      qahwablk: "QahwaBlk",
+      since2019: "Since 2019",
+      home: "Home",
+      menu: "Menu",
+      merchandise: "Merchandise",
+      locations: "Locations",
+      careers: "Careers",
+      contactUs: "Contact Us",
+      deliciousCoffee:
+        "Delicious coffee, every day, for everyone, at a reasonable price.",
+      seeMenu: "See Menu",
+      aboutQahwaBlk: "About QahwaBlk",
+      aboutText:
+        "In 2019, we started QahwaBLK with a simple yet bold question: Could we consistently deliver an exceptional cup of coffee without the hefty price tag or intimidating atmosphere? This question became our mission, leading us to create a space where everyone feels welcome. Our approach strips away the complexities, focusing on quality coffee and genuine interactions. It's not just our baristas who make QahwaBLK special — it's the culture they embody and share with every customer. By marrying straightforward marketing with our team's passion, we've turned every visit into an opportunity for connection, making QahwaBLK a place where coffee lovers gather not just for the beverage, but for the experience that comes with it.",
+      seeAll: "See All",
+      orderFrom: "Order From",
+      developedBy: "Developed By",
+      allRights: "All Rights Reserved",
+      ourLocations: "Our Locations",
+      submit: "Submit",
+      sending: "Sending...",
+      name_min: "Name must be at least 5 characters",
+      name_max: "Name must be at most 50 characters",
+      phone_invalid: "Invalid phone number format.",
+      living_area_required: "Living area is required",
+      age_min: "Minimum age is 18",
+      age_max: "Maximum age is 65",
+      gender_select: "Please select your gender",
+      option_select: "Please select an option",
+      job_type_select: "Please select Full Time or Part Time",
+      studying_select: "Please select if you are studying",
+      working_select: "Please select if you are working",
+      work_exp_min: "Working Experience must be at least 3 characters",
+      work_exp_max: "Working Experience must be at most 50 characters",
+      education_select: "Please select your education level",
+      drink_required: "Favorite drink is required",
+      join_reason_required: "Reason for joining is required",
+      photo_upload: "Please upload a photo",
+      email_invalid: "Invalid email address.",
+      topic_min: "Topic must be at least 3 characters.",
+    },
+  },
+  ar: {
+    translation: {
+      qahwablk: "قهوة BLK",
+      since2019: "منذ 2019",
+      home: "الصفحة الرئيسية",
+      menu: "المنيو",
+      merchandise: "المنتجات",
+      locations: "المواقع",
+      careers: "الوظائف",
+      contactUs: "اتصل بنا",
+      deliciousCoffee: "قهوة لذيذة، كل يوم، للجميع، بأسعار معقولة.",
+      seeMenu: "رؤية القائمة",
+      aboutQahwaBlk: "عن قهوة بلاك",
+      aboutText:
+        "في عام 2019، بدأنا QahwaBLK مع سؤال بسيط وجريء: هل يمكننا تقديم كوب استثنائي من القهوة باستمرار دون الأسعار الباهظة أو الجو المرهق؟ أصبح هذا السؤال مهمتنا، مما قادنا إلى خلق مساحة يشعر فيها الجميع بالترحيب. نهجنا يتخلص من التعقيدات، ويركز على القهوة ذات الجودة العالية والتفاعل الحقيقي. ليس فقط باريستا لدينا من يجعلون QahwaBLK مميزًا — إنها الثقافة التي يجسدونها ويشاركونها مع كل عميل. من خلال دمج التسويق المباشر مع شغف فريقنا، حولنا كل زيارة إلى فرصة للتواصل، مما جعل QahwaBLK مكانًا حيث يجتمع عشاق القهوة ليس فقط من أجل المشروب، ولكن من أجل التجربة التي تأتي معه.",
+      seeAll: "عرض الكل",
+      orderFrom: "اطلب من",
+      developedBy: "تم التطوير بواسطة",
+      allRights: "جميع الحقوق محفوظة",
+      ourLocations: "مواقع الأفرع",
+      submit: "قدم الان",
+      sending: "يتم الارسال ...",
+      name_min: "الاسم يجب أن يكون على الأقل 5 حروف",
+      name_max: "الاسم يجب أن لا يتجاوز 50 حرفًا",
+      phone_invalid: "رقم الهاتف غير صحيح",
+      living_area_required: "منطقة السكن مطلوبة",
+      age_min: "الحد الأدنى للعمر هو 18",
+      age_max: "الحد الأقصى للعمر هو 65",
+      gender_select: "الرجاء اختيار جنسيتك",
+      option_select: "الرجاء اختيار خيار",
+      job_type_select: "الرجاء اختيار دوام كامل أو جزئي",
+      studying_select: "الرجاء تحديد إذا كنت تدرس",
+      working_select: "الرجاء تحديد إذا كنت تعمل",
+      work_exp_min: "خبرة العمل يجب أن تكون على الأقل 3 أحرف",
+      work_exp_max: "خبرة العمل يجب أن لا تتجاوز 50 حرفًا",
+      education_select: "الرجاء اختيار مستوى تعليمك",
+      drink_required: "المشروب المفضل مطلوب",
+      join_reason_required: "السبب في الانضمام مطلوب",
+      photo_upload: "الرجاء تحميل صورة",
+      email_invalid: "البريد الإلكتروني غير صالح.",
+      topic_min: "يجب أن يحتوي الموضوع على 3 أحرف على الأقل.",
+    },
+  },
+};
+
+i18n.use(initReactI18next).init({
+  resources,
+  lng: "en", // default language
+  fallbackLng: "en",
+
+  interpolation: {
+    escapeValue: false, // react already safe from xss
+  },
+});
+
+export default i18n;

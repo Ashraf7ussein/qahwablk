@@ -5,9 +5,12 @@ import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const navLinks = [
+  { name: "Home", href: "/" },
   { name: "Menu", href: "/menu" },
   { name: "Merchandise", href: "/merchandise" },
   { name: "Locations", href: "/locations" },
+  { name: "Careers", href: "/careers" },
+  { name: "ContactUs", href: "/contactUs" },
 ];
 
 const Navbar = () => {

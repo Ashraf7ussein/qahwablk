@@ -45,6 +45,7 @@ const MenuPage = () => {
 
   return (
     <div className="max-w-md mx-auto p-6 mt-30">
+      <h2 className="text-2xl font-bold mb-10 text-center">Menu</h2>
       {menuItems.map((category, catIndex) => (
         <div key={catIndex} className="mb-8">
           {/* Render the category title */}

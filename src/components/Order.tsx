@@ -3,7 +3,7 @@ import talabat from "../assets/talabat.webp";
 
 const Order = () => {
   return (
-    <section className="py-5 bg-gray-50">
+    <section className="py-5 border-t-1 py-20">
       <div className="max-w-screen-xl mx-auto px-4 text-center">
         <div className="flex justify-center items-center gap-8">
           <button

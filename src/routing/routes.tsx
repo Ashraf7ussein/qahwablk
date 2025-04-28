@@ -4,6 +4,8 @@ import MenuPage from "./MenuPage";
 import LocationsPage from "./LocationsPage";
 import Layout from "./Layout";
 import MerchPage from "./MerchPage";
+import CareersPage from "./CareersPage";
+import ContactUsPage from "./ContactUsPage";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,8 @@ const router = createBrowserRouter([
       { path: "menu", element: <MenuPage /> },
       { path: "merchandise", element: <MerchPage /> },
       { path: "locations", element: <LocationsPage /> },
+      { path: "careers", element: <CareersPage /> },
+      { path: "contactUs", element: <ContactUsPage /> },
     ],
   },
 ]);

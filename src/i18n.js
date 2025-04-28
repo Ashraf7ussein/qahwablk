@@ -44,6 +44,15 @@ const resources = {
       photo_upload: "Please upload a photo",
       email_invalid: "Invalid email address.",
       topic_min: "Topic must be at least 3 characters.",
+      bottles: "Water Bottles",
+      bottlesDesc:
+        "Durable and eco-friendly water bottles for staying hydrated on the go.",
+      mug: "BLK Mug",
+      mugDesc:
+        "A stylish ceramic mug perfect for coffee, tea, or any drink you love.",
+      deckSet: "Deck Set",
+      deckSetDesc:
+        "A high-quality playing card set designed for casual and professional games.",
     },
   },
   ar: {
@@ -87,6 +96,14 @@ const resources = {
       photo_upload: "الرجاء تحميل صورة",
       email_invalid: "البريد الإلكتروني غير صالح.",
       topic_min: "يجب أن يحتوي الموضوع على 3 أحرف على الأقل.",
+      bottles: "زجاجات مياه",
+      bottlesDesc:
+        "زجاجات مياه متينة وصديقة للبيئة للحفاظ على الترطيب أثناء التنقل.",
+      mug: "مج BLK",
+      mugDesc: "كوب سيراميك أنيق مثالي للقهوة أو الشاي أو أي مشروب تفضله.",
+      deckSet: "شدة BLK",
+      deckSetDesc:
+        "مجموعة أوراق لعب عالية الجودة مصممة للألعاب العادية والاحترافية.",
     },
   },
 };

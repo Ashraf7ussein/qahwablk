@@ -1,10 +1,9 @@
 import { useTranslation } from "react-i18next";
-import shop from "../assets/shop.jpg";
+import twoCups from "../assets/twoCups.jpg";
 
 const About = () => {
   const { t, i18n } = useTranslation();
 
-  // Conditionally set text alignment based on language
   const textAlignment = i18n.language === "ar" ? "text-right" : "text-left";
 
   return (
@@ -15,9 +14,8 @@ const About = () => {
           <p className="leading-relaxed">{t("aboutText")}</p>
         </div>
         <img
-          src={shop}
-          alt="QahwaBlk shop"
-          className="w-full md:w-1/2 rounded-lg shadow-lg object-cover"
+          src={twoCups}
+          className="w-100 md:w-80 rounded-lg shadow-lg object-cover"
         />
       </div>
     </>

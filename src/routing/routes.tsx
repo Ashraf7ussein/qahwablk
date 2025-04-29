@@ -6,6 +6,8 @@ import Layout from "./Layout";
 import MerchPage from "./MerchPage";
 import CareersPage from "./CareersPage";
 import ContactUsPage from "./ContactUsPage";
+import AdminPage from "./AdminPage";
+import LoginPage from "./LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,8 @@ const router = createBrowserRouter([
       { path: "locations", element: <LocationsPage /> },
       { path: "careers", element: <CareersPage /> },
       { path: "contactUs", element: <ContactUsPage /> },
+      { path: "admin", element: <AdminPage /> },
+      { path: "login", element: <LoginPage /> },
     ],
   },
 ]);

@@ -54,6 +54,15 @@ const resources = {
       deckSetDesc:
         "A high-quality playing card set designed for casual and professional games.",
       ashraf: "Ashraf",
+      login: "Login",
+      email: "Email",
+      password: "Password",
+      noAccount: "Don't have an account?",
+      signup: "Sign up",
+      confirmPassword: "Confirm Password",
+      hasAccount: "Already have an account?",
+      invalidEmail: "Invalid email",
+      passwordMinLength: "Password must be at least 6 characters",
     },
   },
   ar: {
@@ -106,6 +115,15 @@ const resources = {
       deckSetDesc:
         "مجموعة أوراق لعب عالية الجودة مصممة للألعاب العادية والاحترافية.",
       ashraf: "أشرف",
+      login: "تسجيل الدخول",
+      email: "البريد الإلكتروني",
+      password: "كلمة المرور",
+      noAccount: "ليس لديك حساب؟",
+      signup: "إنشاء حساب",
+      confirmPassword: "تأكيد كلمة المرور",
+      hasAccount: "هل لديك حساب بالفعل؟",
+      invalidEmail: "البريد الإلكتروني غير صالح",
+      passwordMinLength: "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل",
     },
   },
 };
@@ -116,7 +134,7 @@ i18n.use(initReactI18next).init({
   fallbackLng: "en",
 
   interpolation: {
-    escapeValue: false, // react already safe from xss
+    escapeValue: false,
   },
 });
 

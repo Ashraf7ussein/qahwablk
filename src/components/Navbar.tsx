@@ -93,7 +93,9 @@ const Navbar = () => {
                     i18n.language === lang.code
                       ? "bg-background text-white"
                       : "text-text hover:bg-background hover:text-white"
-                  } transition-colors duration-300`}
+                  } transition-colors duration-300 ${
+                    lang.code === "ar" ? "arLang" : ""
+                  }`}
                 >
                   {lang.label}
                 </button>

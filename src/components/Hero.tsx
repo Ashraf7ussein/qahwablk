@@ -20,7 +20,7 @@ const Hero = () => {
           {t("qahwablk")}
         </h1>
 
-        <span className="text-white uppercase tracking-[0.25em] text-sm md:text-base mt-4 drop-shadow-md">
+        <span className="text-white uppercase text-xl  mt-4 drop-shadow-md">
           {t("since2019")}
         </span>
         <p className="mt-10 text-white text-base md:text-lg max-w-xl drop-shadow-md leading-relaxed">
@@ -33,8 +33,10 @@ const Hero = () => {
           <span>{t("seeMenu")}</span>
           <IoMdArrowForward
             size={24}
-            className={`transition-transform duration-300 group-hover:translate-x-2 ${
-              i18n.language === "ar" ? "rotate-180" : ""
+            className={`transition-transform duration-300  ${
+              i18n.language === "ar"
+                ? "rotate-180 group-hover:-translate-x-2"
+                : "group-hover:translate-x-2"
             }`}
           />
         </Link>

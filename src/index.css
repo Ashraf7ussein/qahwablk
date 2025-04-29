@@ -20,4 +20,6 @@
 
 /* Arabic language font */
 .arLang {
-  font-family: "Noto Sans Arabic", sans-serif;}
+  /* font-family: "Noto Sans Arabic", sans-serif; */
+  font-family: "Aref Ruqaa", serif;
+}

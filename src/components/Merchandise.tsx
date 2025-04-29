@@ -4,6 +4,9 @@ import deckSet from "../assets/deckSet.jpg";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Merchandise = () => {
   const { t, i18n } = useTranslation();
@@ -26,12 +29,25 @@ const Merchandise = () => {
     },
   ];
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+    });
+
+    //  destroy AOS on component unmount
+    return () => AOS.refresh();
+  }, []);
+
   return (
     <section className="p-8 flex justify-center items-center flex-col">
       <h2 className="text-3xl font-bold mb-8 text-center">
         {t("merchandise")}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div
+        data-aos="fade-up"
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+      >
         {products.map((product, index) => (
           <div
             key={index}
@@ -57,8 +73,10 @@ const Merchandise = () => {
         <span>{t("seeAll")}</span>
         <IoMdArrowForward
           size={24}
-          className={`transition-transform duration-300 group-hover:translate-x-2 ${
-            i18n.language === "ar" ? "rotate-180" : ""
+          className={`transition-transform duration-300  ${
+            i18n.language === "ar"
+              ? "rotate-180 group-hover:-translate-x-2"
+              : "group-hover:translate-x-2"
           }`}
         />
       </Link>

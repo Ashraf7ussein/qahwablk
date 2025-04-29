@@ -12,31 +12,31 @@ const socialLinks = [
   {
     name: "Facebook",
     icon: FaFacebookF,
-    link: "https://www.facebook.com",
+    link: "https://www.facebook.com/qahwablk/",
     hoverColor: "hover:text-blue-600",
   },
   {
     name: "Instagram",
     icon: FaInstagram,
-    link: "https://www.instagram.com",
+    link: "https://www.instagram.com/qahwablk/",
     hoverColor: "hover:text-pink-500",
   },
   {
     name: "SoundCloud",
     icon: FaSoundcloud,
-    link: "https://www.soundcloud.com",
+    link: "https://soundcloud.com/qahwablk",
     hoverColor: "hover:text-orange-600",
   },
   {
     name: "TikTok",
     icon: FaTiktok,
-    link: "https://www.tiktok.com",
+    link: "https://www.tiktok.com/@qahwablk",
     hoverColor: "hover:text-black",
   },
   {
     name: "YouTube",
     icon: FaYoutube,
-    link: "https://www.youtube.com",
+    link: "https://www.youtube.com/channel/UCZpYpbxYE309LJgTI2hB6hA",
     hoverColor: "hover:text-red-600",
   },
   {
@@ -76,12 +76,12 @@ const Footer = () => {
         <p className="text-center text-sm text-gray-400 mt-4">
           {t("developedBy")}&nbsp;
           <a
-            href="https://hrafportfolio.vercel.app"
+            href="https://ashrafportfolio.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:underline"
           >
-            Ashraf
+            {t("ashraf")}
           </a>
         </p>
       </div>

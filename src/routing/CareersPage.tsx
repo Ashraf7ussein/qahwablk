@@ -176,7 +176,7 @@ const CareersPage = () => {
               type="radio"
               value="online"
               name="howDidYouHearAboutUs"
-              className="w-4 h-4 text-blue-600 bg-white border-gray-300 dark:bg-white"
+              className="w-4 h-4 text-blue-600 bg-white border-gray-300 "
             />
             <label
               htmlFor="radio-name"

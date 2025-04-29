@@ -176,11 +176,11 @@ const CareersPage = () => {
               type="radio"
               value="online"
               name="howDidYouHearAboutUs"
-              className="w-4 h-4 text-blue-600 bg-white border-gray-300 dark:bg-white dark:border-gray-300 dark:text-blue-600"
+              className="w-4 h-4 text-blue-600 bg-white border-gray-300"
             />
             <label
               htmlFor="radio-name"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+              className="ms-2 text-sm font-medium text-gray-900"
             >
               Online - أونلاين
             </label>
@@ -192,11 +192,11 @@ const CareersPage = () => {
               type="radio"
               value="blkEmployee"
               name="howDidYouHearAboutUs"
-              className="w-4 h-4 text-blue-600 bg-white border-gray-300 dark:bg-white dark:border-gray-300 dark:text-blue-600"
+              className="w-4 h-4 text-blue-600 bg-white border-gray-300"
             />
             <label
               htmlFor="radio-blkEmployee"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+              className="ms-2 text-sm font-medium text-gray-900"
             >
               An Employee at BLK - موظف في بلاك
             </label>
@@ -208,11 +208,11 @@ const CareersPage = () => {
               type="radio"
               value="jordanUni"
               name="howDidYouHearAboutUs"
-              className="w-4 h-4 text-blue-600 bg-white border-gray-300 dark:bg-white dark:border-gray-300 dark:text-blue-600"
+              className="w-4 h-4 text-blue-600 bg-white border-gray-300 "
             />
             <label
               htmlFor="radio-jordanUni"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+              className="ms-2 text-sm font-medium text-gray-900 "
             >
               Jordan University Job Fair - سوق كرم الجامعة الاردنية
             </label>
@@ -224,11 +224,11 @@ const CareersPage = () => {
               type="radio"
               value="ahliUni"
               name="howDidYouHearAboutUs"
-              className="w-4 h-4 text-blue-600 bg-white border-gray-300 dark:bg-white dark:border-gray-300 dark:text-blue-600"
+              className="w-4 h-4 text-blue-600 bg-white border-gray-300 "
             />
             <label
               htmlFor="radio-ahliUni"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+              className="ms-2 text-sm font-medium text-gray-900 "
             >
               Ahli University - جامعة عمان الأهلية
             </label>
@@ -240,11 +240,11 @@ const CareersPage = () => {
               type="radio"
               value="linkedIn"
               name="howDidYouHearAboutUs"
-              className="w-4 h-4 text-blue-600 bg-white border-gray-300 dark:bg-white dark:border-gray-300 dark:text-blue-600"
+              className="w-4 h-4 text-blue-600 bg-white border-gray-300 "
             />
             <label
               htmlFor="radio-linkedIn"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+              className="ms-2 text-sm font-medium text-gray-900 "
             >
               LinkedIn - لينكدان
             </label>
@@ -256,11 +256,11 @@ const CareersPage = () => {
               type="radio"
               value="other"
               name="howDidYouHearAboutUs"
-              className="w-4 h-4 text-blue-600 bg-white border-gray-300 dark:bg-white dark:border-gray-300 dark:text-blue-600"
+              className="w-4 h-4 text-blue-600 bg-white border-gray-300 "
             />
             <label
               htmlFor="radio-other"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-900"
+              className="ms-2 text-sm font-medium text-gray-900 "
             >
               Other - أخرى
             </label>
@@ -455,7 +455,7 @@ const CareersPage = () => {
             />
             <label
               htmlFor="radio-workingYes"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="ms-2 text-sm font-medium text-gray-900"
             >
               Yes - نعم
             </label>
@@ -471,7 +471,7 @@ const CareersPage = () => {
             />
             <label
               htmlFor="radio-workingNo"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="ms-2 text-sm font-medium text-gray-900"
             >
               No - لا
             </label>
@@ -520,7 +520,7 @@ const CareersPage = () => {
             />
             <label
               htmlFor="radio-highSchool"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="ms-2 text-sm font-medium text-gray-900"
             >
               HighSchool - توجيهي
             </label>
@@ -536,7 +536,7 @@ const CareersPage = () => {
             />
             <label
               htmlFor="radio-diploma"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="ms-2 text-sm font-medium text-gray-900"
             >
               Diploma - دبلوم
             </label>
@@ -552,7 +552,7 @@ const CareersPage = () => {
             />
             <label
               htmlFor="radio-university"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="ms-2 text-sm font-medium text-gray-900"
             >
               University - جامعة
             </label>
@@ -568,7 +568,7 @@ const CareersPage = () => {
             />
             <label
               htmlFor="radio-masters"
-              className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              className="ms-2 text-sm font-medium text-gray-900"
             >
               Masters - ماجستير
             </label>

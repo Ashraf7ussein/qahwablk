@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 

@@ -1,4 +1,4 @@
-import careem from "../assets/careem.png";
+import careem from "../assets/careem.webp";
 import talabat from "../assets/talabat.webp";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";

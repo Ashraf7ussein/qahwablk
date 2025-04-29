@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import twoCups from "../assets/twoCups.jpg";
+import twoCups from "../assets/twoCups.webp";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";

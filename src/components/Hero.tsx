@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
-import shop from "../assets/shop.jpg";
+import shop from "../assets/shop.webp";
 import { useTranslation } from "react-i18next";
 
 const Hero = () => {

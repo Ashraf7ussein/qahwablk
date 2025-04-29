@@ -1,6 +1,6 @@
-import mug from "../assets/mug.jpg";
-import bottles from "../assets/bottles.jpg";
-import deckSet from "../assets/deckSet.jpg";
+import mug from "../assets/mug.webp";
+import bottles from "../assets/bottles.webp";
+import deckSet from "../assets/deckSet.webp";
 import { Link } from "react-router-dom";
 import { IoMdArrowForward } from "react-icons/io";
 import { useTranslation } from "react-i18next";

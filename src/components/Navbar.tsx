@@ -85,11 +85,14 @@ const Navbar = () => {
               </li>
             ))}
 
-            <li className="flex items-center space-x-2 md:ml-4 mt-2 md:mt-0">
+            <li className="flex items-center space-x-2 px-2 md:ml-4 mt-2 md:mt-0">
               {languages.map((lang) => (
                 <button
                   key={lang.code}
-                  onClick={() => changeLanguage(lang.code)}
+                  onClick={() => {
+                    changeLanguage(lang.code);
+                    setMenuOpen(!menuOpen);
+                  }}
                   className={`px-2 py-1 rounded text-sm ${
                     i18n.language === lang.code
                       ? "bg-background text-white"

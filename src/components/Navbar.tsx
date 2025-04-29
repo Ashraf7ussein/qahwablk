@@ -76,6 +76,7 @@ const Navbar = () => {
               <li key={link.name}>
                 <Link
                   to={link.href}
+                  onClick={() => setMenuOpen(!menuOpen)}
                   className="block py-2 px-3 text-text rounded-sm hover:bg-background  hover:text-white
                 md:hover:bg-background md:border-0 md:px-4 md:py-2 md:hover:text-white transition-colors duration-300"
                 >

@@ -48,11 +48,11 @@ const socialLinks = [
 ];
 
 const Footer = () => {
-  const { t } = useTranslation(); // Import t function for translation
+  const { t } = useTranslation();
 
   return (
     <footer className="text-white border-t pt-6 pb-6">
-      <div className="w-full mx-auto max-w-screen-xl px-4 md:flex md:items-center md:justify-between">
+      <div className="w-full mx-auto max-w-screen-xl px-4 flex flex-col items-center md:flex-row md:items-center md:justify-between">
         <span className="text-sm text-gray-400 sm:text-center">
           © 2025 <span className="font-semibold text-white">qahwaBlk™</span>.{" "}
           {t("allRights")}

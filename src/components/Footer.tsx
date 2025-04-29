@@ -5,6 +5,7 @@ import {
   FaTiktok,
   FaYoutube,
   FaTwitter,
+  FaLinkedin,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
@@ -12,9 +13,10 @@ const socialLinks = [
   {
     name: "Facebook",
     icon: FaFacebookF,
-    link: "https://www.facebook.com/qahwablk/",
+    link: "https://www.linkedin.com/company/qahwablk/?originalSubdomain=jo",
     hoverColor: "hover:text-blue-600",
   },
+
   {
     name: "Instagram",
     icon: FaInstagram,
@@ -38,6 +40,12 @@ const socialLinks = [
     icon: FaYoutube,
     link: "https://www.youtube.com/channel/UCZpYpbxYE309LJgTI2hB6hA",
     hoverColor: "hover:text-red-600",
+  },
+  {
+    name: "LinkedIn",
+    icon: FaLinkedin,
+    link: "https://www.facebook.com/qahwablk/",
+    hoverColor: "hover:text-blue-600",
   },
   {
     name: "Twitter",

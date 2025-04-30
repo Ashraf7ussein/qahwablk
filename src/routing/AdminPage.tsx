@@ -1,11 +1,13 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
+import MenuEditor from "../components/MenuEditor";
+import { useEffect } from "react";
 
 const AdminPage = () => {
   const navigate = useNavigate();
 
+  // Authentication guard
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) {
@@ -13,10 +15,10 @@ const AdminPage = () => {
       }
     });
 
-    return () => unsubscribe(); // Clean up the listener on unmount
+    return () => unsubscribe();
   }, [navigate]);
 
-  return <div>AdminPage</div>;
+  return <MenuEditor />;
 };
 
 export default AdminPage;

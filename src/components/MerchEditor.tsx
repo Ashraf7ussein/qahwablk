@@ -1,37 +1,27 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
-interface FormData {
-  arName: string;
-  enName: string;
-  price: number;
-  category: string;
-}
+const MerchEditor = () => {
+  interface FormData {
+    arName: string;
+    enName: string;
+    price: number;
+  }
 
-interface Menu {
-  arName: string;
-  enName: string;
-  price: number;
-  category: string;
-  _id: string;
-}
+  interface Merch {
+    arName: string;
+    enName: string;
+    price: number;
+    _id: string;
+  }
 
-const MenuEditor = () => {
-  const [menu, setMenu] = useState<Menu[]>([]);
-  const [editingItem, setEditingItem] = useState<Menu | null>(null);
+  const { t } = useTranslation();
+  const [merch, setMerch] = useState<Merch[]>([]);
+  const [editingItem, setEditingItem] = useState<Merch | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const { t, i18n } = useTranslation();
-
-  const currentLanguage = i18n.language;
-
-  const showSuccessMessage = (message: string) => {
-    setSuccessMessage(message);
-    setTimeout(() => setSuccessMessage(null), 3000); // auto-hide after 3 seconds
-  };
-
   const {
     register,
     handleSubmit,
@@ -39,27 +29,28 @@ const MenuEditor = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  // fetch menu data
+  // fetch MERCH data
   useEffect(() => {
     axios
-      .get("http://localhost:5000/menu")
+      .get("http://localhost:5000/merch")
       .then((res) => {
-        setMenu(res.data);
+        setMerch(res.data);
       })
       .catch((err) => console.error(err));
   }, []);
 
+  // add ane edit merch data
   const onSubmit = (data: FormData) => {
     if (editingItem) {
       // Editing existing item
       const updatedItem = { ...editingItem, ...data };
 
       axios
-        .put(`http://localhost:5000/menu/${editingItem._id}`, updatedItem)
+        .put(`http://localhost:5000/merch/${editingItem._id}`, updatedItem)
         .then((res) => {
           showSuccessMessage("Item updated successfully.");
 
-          setMenu((prevMenu) =>
+          setMerch((prevMenu) =>
             prevMenu.map((item) =>
               item._id === editingItem._id ? updatedItem : item
             )
@@ -77,17 +68,16 @@ const MenuEditor = () => {
         arName: data.arName,
         enName: data.enName,
         price: data.price,
-        category: data.category,
         _id: data.enName,
       };
 
-      const prevMenu = [...menu];
+      const prevMenu = [...merch];
 
-      setMenu((prevMenu) => [...prevMenu, newItem]);
+      setMerch((prevMenu) => [...prevMenu, newItem]);
       reset();
 
       axios
-        .post("http://localhost:5000/menu", data)
+        .post("http://localhost:5000/merch", data)
         .then((res) => {
           showSuccessMessage("Item Added successfully.");
 
@@ -96,49 +86,54 @@ const MenuEditor = () => {
             _id: res.data._id,
           };
 
-          setMenu((prevMenu) =>
+          setMerch((prevMenu) =>
             prevMenu.map((item) =>
               item._id === "temp-id" ? updatedItem : item
             )
           );
-          console.log("SUCCESS POSTED TO THE MENU");
+          console.log("SUCCESS POSTED TO THE MERCH MENU");
         })
         .catch((err) => {
-          console.error("Error posting to menu:", err);
+          console.error("Error posting to merch menu:", err);
 
-          setMenu(prevMenu);
+          setMerch(prevMenu);
         });
     }
   };
 
   // delete item
-  const deleteItem = (item: Menu) => {
-    const prevMenu = [...menu];
+  const deleteItem = (item: Merch) => {
+    const prevMenu = [...merch];
 
-    setMenu(menu.filter((i) => i._id !== item._id));
+    setMerch(merch.filter((i) => i._id !== item._id));
 
     axios
-      .delete(`http://localhost:5000/menu/${item._id}`)
+      .delete(`http://localhost:5000/merch/${item._id}`)
       .then((res) => {
-        console.log("SUCCESS DELETED FROM THE Merch menu");
+        console.log("SUCCESS DELETED FROM THE Merch");
         showSuccessMessage("Item deleted successfully.");
       })
       .catch((err) => {
-        console.error("Error deleting from menu:", err);
+        console.error("Error deleting from merch:", err);
 
-        setMenu(prevMenu);
+        setMerch(prevMenu);
       });
+  };
+
+  const showSuccessMessage = (message: string) => {
+    setSuccessMessage(message);
+    setTimeout(() => setSuccessMessage(null), 3000); // auto-hide after 3 seconds
   };
 
   return (
     <div className="bg-white text-black p-6 pt-20">
       <h2 className="text-2xl font-medium mb-6 text-center pt-10">
-        {t("menuEditor")}
+        {t("merchEditor")}
       </h2>
 
       <div className="p-3 relative overflow-x-auto shadow-md sm:rounded-lg mb-5">
         <p className="mb-5 font-medium text-xl">
-          {editMode ? t("updatedMenuItem") : t("newMenuItem")}
+          {editMode ? t("updatedMerchItem") : t("newMerchItem")}
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-5">
@@ -189,26 +184,6 @@ const MenuEditor = () => {
               required
             />
           </div>
-          <div className="mb-5">
-            <label
-              htmlFor="category"
-              className="block mb-2 text-sm font-medium text-gray-900 "
-            >
-              {t("category")}
-            </label>
-            <select
-              {...register("category")}
-              id="category"
-              className="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg
-           focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-            >
-              <option value=""></option>
-              <option value="black coffee">Black Coffee</option>
-              <option value="milk coffee">Milk Coffee</option>
-              <option value="sweet coffee">Sweet Coffee</option>
-              <option value="snack">Snack</option>
-            </select>
-          </div>
           <div>
             {successMessage && (
               <div className="mb-4 p-3 text-green-800 bg-green-100 rounded-md">
@@ -240,9 +215,6 @@ const MenuEditor = () => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
-                {t("category")}
-              </th>
-              <th scope="col" className="px-6 py-3">
                 {t("arName")}
               </th>
               <th scope="col" className="px-6 py-3">
@@ -257,30 +229,29 @@ const MenuEditor = () => {
             </tr>
           </thead>
           <tbody>
-            {menu.map((menuItem) => {
+            {merch.map((merchItem) => {
               return (
                 <tr
                   className="odd:bg-white even:bg-gray-50 border-gray-200"
-                  key={menuItem._id}
+                  key={merchItem._id}
                 >
-                  <td className="px-6 py-4">{menuItem.category}</td>
-                  <td className="px-6 py-4">{menuItem.arName}</td>
-                  <td className="px-6 py-4">{menuItem.enName}</td>
-                  <td className="px-6 py-4">{menuItem.price}</td>
+                  <td className="px-6 py-4">{merchItem.arName}</td>
+                  <td className="px-6 py-4">{merchItem.enName}</td>
+                  <td className="px-6 py-4">{merchItem.price}</td>
                   <td className="px-6 py-4 space-x-6">
                     <button
                       className="font-medium text-blue-600 hover:underline hover:cursor-pointer"
                       onClick={() => {
                         setEditMode(true);
-                        setEditingItem(menuItem);
-                        reset(menuItem); // prefill the form with existing values
+                        setEditingItem(merchItem);
+                        reset(merchItem); // prefill the form with existing values
                         window.scrollTo({ top: 100, behavior: "smooth" }); // move to top
                       }}
                     >
                       {t("edit")}
                     </button>
                     <button
-                      onClick={() => deleteItem(menuItem)}
+                      onClick={() => deleteItem(merchItem)}
                       className="font-medium text-red-600 hover:underline hover:cursor-pointer"
                     >
                       {t("delete")}
@@ -296,4 +267,4 @@ const MenuEditor = () => {
   );
 };
 
-export default MenuEditor;
+export default MerchEditor;

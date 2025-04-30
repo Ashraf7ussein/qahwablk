@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const merchItems = [
@@ -14,25 +16,46 @@ const merchItems = [
 ];
 
 const MerchPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+  const [merch, setMerch] = useState<Merch[]>([]);
+  interface Merch {
+    arName: string;
+    enName: string;
+    price: number;
+    _id: string;
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/merch")
+      .then((res) => {
+        console.log(res.data);
+        setMerch(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="max-w-xl mx-auto p-6 mt-30">
       <h2 className="text-2xl font-bold mb-10 text-center">
         {t("merchandise")}
+        <div>
+          {merch.map((merchItem) => (
+            <div
+              className="flex justify-between items-center p-4"
+              key={merchItem._id}
+            >
+              <p className="text-lg">
+                {currentLanguage === "ar" ? merchItem.arName : merchItem.enName}
+              </p>
+              <p className="text-lg">
+                {merchItem.price.toFixed(2)} {t("jod")}
+              </p>
+            </div>
+          ))}
+        </div>
       </h2>
-
-      <div>
-        {merchItems.map((item, itemIndex) => (
-          <div
-            key={itemIndex}
-            className="flex justify-between items-center p-4 gap-10 "
-          >
-            <span className="text-lg font-medium">{item.enName}</span>
-            <span>{item.price}</span>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };

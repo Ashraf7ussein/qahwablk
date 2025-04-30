@@ -109,10 +109,12 @@ const MenuPage = () => {
                 className="flex justify-between items-center p-4"
                 key={menuItem._id}
               >
-                <p>
+                <p className="text-lg">
                   {currentLanguage === "ar" ? menuItem.arName : menuItem.enName}
                 </p>
-                <p>{menuItem.price.toFixed(2)} JOD</p>
+                <p className="text-lg">
+                  {menuItem.price.toFixed(2)} {t("jod")}
+                </p>
               </div>
             ))}
           </div>

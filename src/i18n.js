@@ -77,6 +77,11 @@ const resources = {
       edit: "Edit",
       delete: "Delete",
       actions: "Actions",
+      menuEditor: "Menu Editor",
+      merchEditor: "Merchandise Editor",
+      locationsEditor: "Locations Editor",
+      newMerchItem: "Add New Merch Item",
+      updatedMerchItem: "Updated Merch Item",
     },
   },
   ar: {
@@ -152,6 +157,11 @@ const resources = {
       edit: "تعديل",
       delete: "حذف",
       actions: "الإجراءات",
+      menuEditor: "محرر المنيو",
+      merchEditor: "محرر المنتجات",
+      locationsEditor: "محرر المواقع",
+      newMerchItem: "أضف منتجًا جديدًا",
+      updatedMerchItem: "تحديث المنتج",
     },
   },
 };

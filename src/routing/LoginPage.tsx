@@ -7,16 +7,19 @@ import { auth } from "../../firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import ToastNotification from "../components/ToastNotification";
 import { useTranslation } from "react-i18next";
 
 const LoginPage = () => {
+  const { t } = useTranslation();
   const [isLogin, setLogin] = useState(true);
   const [passwordVisible, setPasswordVisibility] = useState(false);
   const [authError, setAuthError] = useState("");
+  const [resetMessage, setResetMessage] = useState("");
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const loginSchema = z.object({
     email: z.string().email({ message: t("invalidEmail") }),
@@ -42,6 +45,7 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   const getFriendlyError = (code: string) => {
@@ -88,8 +92,29 @@ const LoginPage = () => {
     }
   };
 
+  const handleResetPassword = async () => {
+    const emailValue = watch("email");
+
+    if (!emailValue || !/\S+@\S+\.\S+/.test(emailValue)) {
+      setAuthError(t("error.enterValidEmail"));
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, emailValue);
+      setResetMessage(t("resetEmailSent")); // Set success message for reset
+    } catch (error: any) {
+      console.error("Reset password error:", error.code);
+      setAuthError(getFriendlyError(error.code));
+    }
+  };
+
   return (
     <div className="pt-30 pb-10 bg-white min-h-screen flex flex-col justify-center items-center px-4">
+      {resetMessage && (
+        <ToastNotification message={resetMessage} type="success" />
+      )}
+
       <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">
         {isLogin ? t("login") : t("signup")}
       </h2>
@@ -97,7 +122,6 @@ const LoginPage = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-md px-8 py-6 bg-white rounded shadow-md"
       >
-        {/* Email Field */}
         <div className="mb-5">
           <label className="block text-gray-700 mb-1" htmlFor="email">
             {t("email")}
@@ -113,7 +137,6 @@ const LoginPage = () => {
           )}
         </div>
 
-        {/* Password Field */}
         <div className="mb-5">
           <label className="block text-gray-700 mb-1" htmlFor="password">
             {t("password")}
@@ -148,52 +171,22 @@ const LoginPage = () => {
           )}
         </div>
 
-        {/* Confirm Password Field (Signup Only) */}
-        {!isLogin && (
-          <div className="mb-5">
-            <label
-              className="block text-gray-700 mb-1"
-              htmlFor="confirmPassword"
+        {isLogin && (
+          <div className="mb-5 text-right">
+            <button
+              type="button"
+              onClick={handleResetPassword}
+              className="text-sm text-blue-600 hover:underline hover:cursor-pointer"
             >
-              {t("confirmPassword")}
-            </label>
-            <div className="relative flex items-center">
-              <input
-                id="confirmPassword"
-                type={passwordVisible ? "text" : "password"}
-                {...register("confirmPassword")}
-                className="w-full p-2.5 pr-10 rounded border text-black border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-              {passwordVisible ? (
-                <FaEye
-                  size={18}
-                  color="gray"
-                  className="absolute right-3 cursor-pointer"
-                  onClick={() => setPasswordVisibility(!passwordVisible)}
-                />
-              ) : (
-                <FaEyeSlash
-                  size={18}
-                  color="gray"
-                  className="absolute right-3 cursor-pointer"
-                  onClick={() => setPasswordVisibility(!passwordVisible)}
-                />
-              )}
-            </div>
-            {errors.confirmPassword && (
-              <p className="text-red-500 text-sm mt-1">
-                {errors.confirmPassword.message}
-              </p>
-            )}
+              {t("forgotPassword")}
+            </button>
           </div>
         )}
 
-        {/* Auth Error Message */}
         {authError && (
           <p className="text-red-500 text-sm text-center mb-4">{authError}</p>
         )}
 
-        {/* Submit Button */}
         <button
           type="submit"
           className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition hover:cursor-pointer"
@@ -201,7 +194,6 @@ const LoginPage = () => {
           {isLogin ? t("login") : t("signup")}
         </button>
 
-        {/* Switch Mode */}
         <p className="mt-4 text-sm text-gray-600 text-center">
           {isLogin ? t("noAccount") : t("hasAccount")}{" "}
           <button

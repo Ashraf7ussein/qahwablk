@@ -35,8 +35,6 @@ const Navbar = () => {
       document.body.classList.remove("arLang");
       document.body.setAttribute("dir", "ltr");
     }
-
-    console.log("Body classes after language change:", document.body.classList);
   }, [i18n.language]);
 
   return (

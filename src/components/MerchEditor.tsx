@@ -15,7 +15,6 @@ interface Merch {
   price: number;
   _id: string;
 }
-
 const MerchEditor = () => {
   const { t } = useTranslation();
   const [merch, setMerch] = useState<Merch[]>([]);
@@ -124,7 +123,6 @@ const MerchEditor = () => {
     setSuccessMessage(message);
     setTimeout(() => setSuccessMessage(null), 3000); // auto-hide after 3 seconds
   };
-
   return (
     <div className="bg-white text-black p-6 pt-20">
       <h2 className="text-2xl font-medium mb-6 text-center pt-10">

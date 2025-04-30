@@ -82,6 +82,10 @@ const resources = {
       locationsEditor: "Locations Editor",
       newMerchItem: "Add New Merch Item",
       updatedMerchItem: "Updated Merch Item",
+      enterValidEmail: "Please enter a valid email to reset your password.",
+      forgotPassword: "Forgot Password?",
+      location: "Location",
+      logout: "Logout",
     },
   },
   ar: {
@@ -162,7 +166,12 @@ const resources = {
       locationsEditor: "محرر المواقع",
       newMerchItem: "أضف منتجًا جديدًا",
       updatedMerchItem: "تحديث المنتج",
+      enterValidEmail:
+        "يرجى إدخال بريد إلكتروني صالح لإعادة تعيين كلمة المرور.",
     },
+    forgotPassword: "نسيت كلمة المرور؟",
+    location: "الموقع",
+    logout: "تسجيل الخروج",
   },
 };
 

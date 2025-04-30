@@ -15,16 +15,17 @@ const merchItems = [
   { enName: "Playing Cards Set - شدة", price: "7 JOD" },
 ];
 
+interface Merch {
+  arName: string;
+  enName: string;
+  price: number;
+  _id: string;
+}
+
 const MerchPage = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
   const [merch, setMerch] = useState<Merch[]>([]);
-  interface Merch {
-    arName: string;
-    enName: string;
-    price: number;
-    _id: string;
-  }
 
   useEffect(() => {
     axios

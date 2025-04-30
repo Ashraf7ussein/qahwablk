@@ -3,20 +3,20 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
+interface FormData {
+  arName: string;
+  enName: string;
+  price: number;
+}
+
+interface Merch {
+  arName: string;
+  enName: string;
+  price: number;
+  _id: string;
+}
+
 const MerchEditor = () => {
-  interface FormData {
-    arName: string;
-    enName: string;
-    price: number;
-  }
-
-  interface Merch {
-    arName: string;
-    enName: string;
-    price: number;
-    _id: string;
-  }
-
   const { t } = useTranslation();
   const [merch, setMerch] = useState<Merch[]>([]);
   const [editingItem, setEditingItem] = useState<Merch | null>(null);

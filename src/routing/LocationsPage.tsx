@@ -1,3 +1,5 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaLocationArrow } from "react-icons/fa6";
 
@@ -119,8 +121,27 @@ const locations = [
   },
 ];
 
+interface Locations {
+  arName: string;
+  enName: string;
+  location: string;
+  _id: string;
+}
+
 const LocationsPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
+  const [locations, setLocations] = useState<Locations[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/merch")
+      .then((res) => {
+        console.log(res.data);
+        setLocations(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <div className="w-full mt-30 max-w-screen-md mx-auto p-4">

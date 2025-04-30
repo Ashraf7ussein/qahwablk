@@ -1,12 +1,267 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+
+interface FormData {
+  arName: string;
+  enName: string;
+  location: string;
+}
+
+interface Location {
+  arName: string;
+  enName: string;
+  location: string;
+  _id: string;
+}
 
 const LocationsEditor = () => {
   const { t } = useTranslation();
+  const [locations, setLocations] = useState<Location[]>([]);
+  const [editingItem, setEditingItem] = useState<Location | null>(null);
+  const [editMode, setEditMode] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  // fetch LOCATION data
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/locations")
+      .then((res) => {
+        setLocations(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  // add and edit location data
+  const onSubmit = (data: FormData) => {
+    if (editingItem) {
+      // Editing existing item
+      const updatedItem = { ...editingItem, ...data };
+
+      axios
+        .put(`http://localhost:5000/locations/${editingItem._id}`, updatedItem)
+        .then((res) => {
+          showSuccessMessage("Item updated successfully.");
+
+          setLocations((prevMenu) =>
+            prevMenu.map((item) =>
+              item._id === editingItem._id ? updatedItem : item
+            )
+          );
+
+          reset();
+          console.log("Item updated successfully");
+        })
+        .catch((err) => {
+          console.error("Error updating item:", err);
+        });
+    } else {
+      // Add new item
+      const newItem = {
+        arName: data.arName,
+        enName: data.enName,
+        location: data.location,
+        _id: data.enName,
+      };
+
+      const prevMenu = [...locations];
+
+      setLocations((prevMenu) => [...prevMenu, newItem]);
+      reset();
+
+      axios
+        .post("http://localhost:5000/locations", data)
+        .then((res) => {
+          showSuccessMessage("Item Added successfully.");
+
+          const updatedItem = {
+            ...newItem,
+            _id: res.data._id,
+          };
+
+          setLocations((prevMenu) =>
+            prevMenu.map((item) =>
+              item._id === "temp-id" ? updatedItem : item
+            )
+          );
+          console.log("SUCCESS POSTED TO THE LOCATION MENU");
+        })
+        .catch((err) => {
+          console.error("Error posting to merch menu:", err);
+
+          setLocations(prevMenu);
+        });
+    }
+  };
+
+  // delete item
+  const deleteItem = (item: Location) => {
+    const prevMenu = [...locations];
+
+    setLocations(locations.filter((i) => i._id !== item._id));
+
+    axios
+      .delete(`http://localhost:5000/locations/${item._id}`)
+      .then((res) => {
+        console.log("SUCCESS DELETED FROM THE Locations");
+        showSuccessMessage("Item deleted successfully.");
+      })
+      .catch((err) => {
+        console.error("Error deleting from merch:", err);
+
+        setLocations(prevMenu);
+      });
+  };
+
+  const showSuccessMessage = (message: string) => {
+    setSuccessMessage(message);
+    setTimeout(() => setSuccessMessage(null), 3000); // auto-hide after 3 seconds
+  };
+
   return (
     <div className="bg-white text-black p-6 pt-20">
       <h2 className="text-2xl font-medium mb-6 text-center pt-10">
         {t("locationsEditor")}
       </h2>
+      <div className="p-3 relative overflow-x-auto shadow-md sm:rounded-lg mb-5">
+        <p className="mb-5 font-medium text-xl">
+          {editMode ? t("updatedMerchItem") : t("newMerchItem")}
+        </p>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="mb-5">
+            <label
+              htmlFor="arName"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              {t("arName")}
+            </label>
+            <input
+              {...register("arName")}
+              type="text"
+              id="arName"
+              className="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+              required
+            />
+          </div>
+
+          <div className="mb-5">
+            <label
+              htmlFor="enName"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              {t("enName")}
+            </label>
+            <input
+              {...register("enName")}
+              type="text"
+              id="enName"
+              className="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+              required
+            />
+          </div>
+          <div className="mb-5">
+            <label
+              htmlFor="location"
+              className="block mb-2 text-sm font-medium text-gray-900 "
+            >
+              {t("location")}
+            </label>
+            <input
+              {...register("location")}
+              type="text"
+              id="location"
+              step="any"
+              className="bg-gray-50 border outline-none border-gray-300 text-gray-900 text-sm rounded-lg
+           focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+              required
+            />
+          </div>
+          <div>
+            {successMessage && (
+              <div className="mb-4 p-3 text-green-800 bg-green-100 rounded-md">
+                {successMessage}
+              </div>
+            )}
+            <button
+              type="submit"
+              className="w-full font-semibold text-lg py-2 rounded-lg mt-4 hover:cursor-pointer bg-blue-500 hover:bg-blue-600 text-white"
+            >
+              {editingItem ? t("editItem") : t("addItem")}
+            </button>
+            {editMode && (
+              <button
+                className="w-full font-semibold text-lg py-2 rounded-lg mt-4 hover:cursor-pointer bg-gray-500 hover:bg-gray-600 text-white"
+                onClick={() => {
+                  setEditMode(false);
+                }}
+              >
+                {t("cancelEdit")}
+              </button>
+            )}
+          </div>
+        </form>
+      </div>
+
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                {t("arName")}
+              </th>
+              <th scope="col" className="px-6 py-3">
+                {t("enName")}
+              </th>
+              <th scope="col" className="px-6 py-3">
+                {t("location")}
+              </th>
+              <th scope="col" className="px-6 py-3">
+                {t("actions")}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {locations.map((locationItem) => {
+              return (
+                <tr
+                  className="odd:bg-white even:bg-gray-50 border-gray-200"
+                  key={locationItem._id}
+                >
+                  <td className="px-6 py-4">{locationItem.arName}</td>
+                  <td className="px-6 py-4">{locationItem.enName}</td>
+                  <td className="px-6 py-4">{locationItem.location}</td>
+                  <td className="px-6 py-4 space-x-6">
+                    <button
+                      className="font-medium text-blue-600 hover:underline hover:cursor-pointer"
+                      onClick={() => {
+                        setEditMode(true);
+                        setEditingItem(locationItem);
+                        reset(locationItem); // prefill the form with existing values
+                        window.scrollTo({ top: 100, behavior: "smooth" }); // move to top
+                      }}
+                    >
+                      {t("edit")}
+                    </button>
+                    <button
+                      onClick={() => deleteItem(locationItem)}
+                      className="font-medium text-red-600 hover:underline hover:cursor-pointer"
+                    >
+                      {t("delete")}
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

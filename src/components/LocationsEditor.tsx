@@ -22,12 +22,7 @@ const LocationsEditor = () => {
   const [editingItem, setEditingItem] = useState<Location | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
   // fetch LOCATION data
   useEffect(() => {
@@ -47,7 +42,7 @@ const LocationsEditor = () => {
 
       axios
         .put(`http://localhost:5000/locations/${editingItem._id}`, updatedItem)
-        .then((res) => {
+        .then(() => {
           showSuccessMessage("Item updated successfully.");
 
           setLocations((prevMenu) =>
@@ -109,8 +104,7 @@ const LocationsEditor = () => {
 
     axios
       .delete(`http://localhost:5000/locations/${item._id}`)
-      .then((res) => {
-        console.log("SUCCESS DELETED FROM THE Locations");
+      .then(() => {
         showSuccessMessage("Item deleted successfully.");
       })
       .catch((err) => {

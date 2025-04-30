@@ -21,12 +21,7 @@ const MerchEditor = () => {
   const [editingItem, setEditingItem] = useState<Merch | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
   // fetch MERCH data
   useEffect(() => {
@@ -46,7 +41,7 @@ const MerchEditor = () => {
 
       axios
         .put(`http://localhost:5000/merch/${editingItem._id}`, updatedItem)
-        .then((res) => {
+        .then(() => {
           showSuccessMessage("Item updated successfully.");
 
           setMerch((prevMenu) =>
@@ -108,8 +103,7 @@ const MerchEditor = () => {
 
     axios
       .delete(`http://localhost:5000/merch/${item._id}`)
-      .then((res) => {
-        console.log("SUCCESS DELETED FROM THE Merch");
+      .then(() => {
         showSuccessMessage("Item deleted successfully.");
       })
       .catch((err) => {

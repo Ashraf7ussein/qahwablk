@@ -5,7 +5,7 @@ import MenuEditor from "../components/MenuEditor";
 import LocationsEditor from "../components/LocationsEditor";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import MerchEditor from "../components/merchEditor";
+import MerchEditor from "../components/MerchEditor";
 
 const AdminPage = () => {
   const navigate = useNavigate();

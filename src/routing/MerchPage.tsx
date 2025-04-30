@@ -2,19 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const merchItems = [
-  { enName: "Coffee Bean - قهوة كولومبية", price: "8 JOD" },
-  {
-    enName: "Insulated Temperature Thermo - ترموس معزول للحرارة",
-    price: "15 JOD",
-  },
-  { enName: "Matte Mug - فنجان", price: "8 JOD" },
-  { enName: "Tote Bag - حقيبة توت", price: "6 JOD" },
-  { enName: "Hoodie - هودي", price: "20 JOD" },
-  { enName: "Picnic Blanket - شرشف شدة", price: "10 JOD" },
-  { enName: "Playing Cards Set - شدة", price: "7 JOD" },
-];
-
 interface Merch {
   arName: string;
   enName: string;

@@ -23,21 +23,14 @@ const MenuEditor = () => {
   const [editingItem, setEditingItem] = useState<Menu | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const { t, i18n } = useTranslation();
-
-  const currentLanguage = i18n.language;
+  const { t } = useTranslation();
 
   const showSuccessMessage = (message: string) => {
     setSuccessMessage(message);
     setTimeout(() => setSuccessMessage(null), 3000); // auto-hide after 3 seconds
   };
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
   // fetch menu data
   useEffect(() => {
@@ -56,7 +49,7 @@ const MenuEditor = () => {
 
       axios
         .put(`http://localhost:5000/menu/${editingItem._id}`, updatedItem)
-        .then((res) => {
+        .then(() => {
           showSuccessMessage("Item updated successfully.");
 
           setMenu((prevMenu) =>
@@ -119,8 +112,7 @@ const MenuEditor = () => {
 
     axios
       .delete(`http://localhost:5000/menu/${item._id}`)
-      .then((res) => {
-        console.log("SUCCESS DELETED FROM THE Merch menu");
+      .then(() => {
         showSuccessMessage("Item deleted successfully.");
       })
       .catch((err) => {

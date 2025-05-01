@@ -3,7 +3,7 @@ const LocationItem = require("../models/LocationItem");
 
 const router = express.Router();
 
-router.post("/locations", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const newItem = new LocationItem(req.body);
     await newItem.save();
@@ -14,7 +14,7 @@ router.post("/locations", async (req, res) => {
   }
 });
 
-router.get("/locations", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const items = await LocationItem.find();
     res.status(200).json(items);
@@ -24,7 +24,7 @@ router.get("/locations", async (req, res) => {
   }
 });
 
-router.put("/locations/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedItem = await LocationItem.findByIdAndUpdate(
       req.params.id,
@@ -40,7 +40,7 @@ router.put("/locations/:id", async (req, res) => {
   }
 });
 
-router.delete("/locations/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const deletedItem = await LocationItem.findByIdAndDelete(req.params.id);
     if (!deletedItem)

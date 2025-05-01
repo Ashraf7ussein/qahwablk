@@ -3,7 +3,7 @@ const MerchItem = require("../models/MerchItem");
 
 const router = express.Router();
 
-router.post("/merch", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const newItem = new MerchItem(req.body);
     await newItem.save();
@@ -14,7 +14,7 @@ router.post("/merch", async (req, res) => {
   }
 });
 
-router.get("/merch", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const items = await MerchItem.find();
     res.status(200).json(items);
@@ -24,7 +24,7 @@ router.get("/merch", async (req, res) => {
   }
 });
 
-router.put("/merch/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const updatedItem = await MerchItem.findByIdAndUpdate(
       req.params.id,
@@ -40,7 +40,7 @@ router.put("/merch/:id", async (req, res) => {
   }
 });
 
-router.delete("/merch/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const deletedItem = await MerchItem.findByIdAndDelete(req.params.id);
     if (!deletedItem)

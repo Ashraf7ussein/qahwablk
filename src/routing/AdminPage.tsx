@@ -49,7 +49,7 @@ const AdminPage = () => {
 
   return (
     <div className="bg-white flex flex-col lg:flex-row min-h-screen">
-      <aside className="w-full lg:w-64 bg-gray-100 p-6 border-r">
+      <aside className="w-full lg:w-64 bg-gray-100 p-6 border-r pt-35">
         <h2 className="text-xl font-bold mb-6 text-gray-900">
           {t("adminPanel")}
         </h2>

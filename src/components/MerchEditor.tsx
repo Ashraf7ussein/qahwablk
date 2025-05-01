@@ -26,7 +26,7 @@ const MerchEditor = () => {
   // fetch MERCH data
   useEffect(() => {
     axios
-      .get("http://localhost:5000/merch")
+      .get("https://qahwablk-backend-1.onrender.com/merch")
       .then((res) => {
         setMerch(res.data);
       })
@@ -40,7 +40,10 @@ const MerchEditor = () => {
       const updatedItem = { ...editingItem, ...data };
 
       axios
-        .put(`http://localhost:5000/merch/${editingItem._id}`, updatedItem)
+        .put(
+          `https://qahwablk-backend-1.onrender.com/merch/${editingItem._id}`,
+          updatedItem
+        )
         .then(() => {
           showSuccessMessage("Item updated successfully.");
 
@@ -71,7 +74,7 @@ const MerchEditor = () => {
       reset();
 
       axios
-        .post("http://localhost:5000/merch", data)
+        .post("https://qahwablk-backend-1.onrender.com/merch", data)
         .then((res) => {
           showSuccessMessage("Item Added successfully.");
 
@@ -102,7 +105,7 @@ const MerchEditor = () => {
     setMerch(merch.filter((i) => i._id !== item._id));
 
     axios
-      .delete(`http://localhost:5000/merch/${item._id}`)
+      .delete(`https://qahwablk-backend-1.onrender.com/merch/${item._id}`)
       .then(() => {
         showSuccessMessage("Item deleted successfully.");
       })

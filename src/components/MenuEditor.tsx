@@ -35,7 +35,7 @@ const MenuEditor = () => {
   // fetch menu data
   useEffect(() => {
     axios
-      .get("http://localhost:5000/menu")
+      .get("https://qahwablk-backend-1.onrender.com/menu")
       .then((res) => {
         setMenu(res.data);
       })
@@ -48,7 +48,10 @@ const MenuEditor = () => {
       const updatedItem = { ...editingItem, ...data };
 
       axios
-        .put(`http://localhost:5000/menu/${editingItem._id}`, updatedItem)
+        .put(
+          `https://qahwablk-backend-1.onrender.com/menu/${editingItem._id}`,
+          updatedItem
+        )
         .then(() => {
           showSuccessMessage("Item updated successfully.");
 
@@ -80,7 +83,7 @@ const MenuEditor = () => {
       reset();
 
       axios
-        .post("http://localhost:5000/menu", data)
+        .post("https://qahwablk-backend-1.onrender.com/menu", data)
         .then((res) => {
           showSuccessMessage("Item Added successfully.");
 
@@ -111,7 +114,7 @@ const MenuEditor = () => {
     setMenu(menu.filter((i) => i._id !== item._id));
 
     axios
-      .delete(`http://localhost:5000/menu/${item._id}`)
+      .delete(`https://qahwablk-backend-1.onrender.com/menu/${item._id}`)
       .then(() => {
         showSuccessMessage("Item deleted successfully.");
       })

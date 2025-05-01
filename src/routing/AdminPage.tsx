@@ -41,7 +41,7 @@ const AdminPage = () => {
 
   if (!authChecked) {
     return (
-      <div className="flex items-center justify-center min-h-screen text-gray-700">
+      <div className="flex items-center justify-center min-h-screen text-gray-200">
         {t("loading")}...
       </div>
     );

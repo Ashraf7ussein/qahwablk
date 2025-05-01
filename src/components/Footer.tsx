@@ -8,6 +8,7 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const socialLinks = [
   {
@@ -57,6 +58,7 @@ const socialLinks = [
 
 const Footer = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <footer className="text-white border-t pt-6 pb-6">
@@ -65,6 +67,7 @@ const Footer = () => {
           © 2025 <span className="font-semibold text-white">qahwaBlk™</span>.{" "}
           {t("allRights")}
         </span>
+        <button onClick={() => navigate("/login")}>admin panel</button>
 
         <ul className="flex gap-6 mt-4 md:mt-0 justify-center">
           {socialLinks.map(({ name, icon: Icon, link, hoverColor }) => (

@@ -86,6 +86,7 @@ const resources = {
       forgotPassword: "Forgot Password?",
       location: "Location",
       logout: "Logout",
+      noItems: "No items found",
     },
   },
   ar: {
@@ -98,7 +99,7 @@ const resources = {
       locations: "المواقع",
       careers: "الوظائف",
       contactUs: "اتصل بنا",
-      deliciousCoffee: "قهوة لذيذة، كل يوم، للجميع، بأسعار معقولة.",
+      deliciousCoffee: "قهوة لذيذة ، كل يوم ، للجميع ، بأسعار معقولة.",
       seeMenu: "رؤية القائمة",
       aboutQahwaBlk: "عن قهوة بلاك",
       aboutText:
@@ -172,6 +173,7 @@ const resources = {
     forgotPassword: "نسيت كلمة المرور؟",
     location: "الموقع",
     logout: "تسجيل الخروج",
+    noItems: "لا توجد عناصر",
   },
 };
 

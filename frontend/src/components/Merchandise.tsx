@@ -31,8 +31,8 @@ const Merchandise = () => {
 
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
+      duration: 300,
+      easing: "ease-in",
     });
 
     //  destroy AOS on component unmount
@@ -40,14 +40,14 @@ const Merchandise = () => {
   }, []);
 
   return (
-    <section className="p-8 flex justify-center items-center flex-col">
+    <section
+      data-aos="fade-up"
+      className="p-8 flex justify-center items-center flex-col"
+    >
       <h2 className="text-3xl font-bold mb-8 text-center">
         {t("merchandise")}
       </h2>
-      <div
-        data-aos="fade-up"
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {products.map((product, index) => (
           <div
             key={index}

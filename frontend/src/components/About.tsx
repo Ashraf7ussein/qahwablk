@@ -10,8 +10,8 @@ const About = () => {
   const textAlignment = i18n.language === "ar" ? "text-right" : "text-left";
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      easing: "ease-in-out",
+      duration: 300,
+      easing: "ease-in",
     });
 
     //  destroy AOS on component unmount

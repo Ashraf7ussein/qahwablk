@@ -6,7 +6,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const Order = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const currentLanguage = i18n.language;
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -21,7 +24,7 @@ const Order = () => {
       <div className="max-w-screen-xl mx-auto px-4 text-center">
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-8">
           <a
-            data-aos="fade-right"
+            data-aos={currentLanguage === "ar" ? "fade-left" : "fade-right"}
             href="http://careem.me/QahwaBLK1"
             target="_blank"
             rel="noopener noreferrer"
@@ -32,7 +35,7 @@ const Order = () => {
           </a>
 
           <a
-            data-aos="fade-left"
+            data-aos={currentLanguage === "ar" ? "fade-right" : "fade-left"}
             href="https://www.talabat.com/jordan/qahwa-blk"
             target="_blank"
             rel="noopener noreferrer"

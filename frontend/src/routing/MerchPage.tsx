@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import Spinner from "../components/Spinner";
 
 interface Merch {
   arName: string;
@@ -13,6 +14,7 @@ const MerchPage = () => {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
   const [merch, setMerch] = useState<Merch[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     axios
@@ -21,13 +23,21 @@ const MerchPage = () => {
         console.log(res.data);
         setMerch(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
     <div className="max-w-xl mx-auto p-6 mt-30">
       <h2 className="text-2xl font-bold mb-10 text-center">
         {t("merchandise")}
+      </h2>
+      {!loading && merch.length === 0 && (
+        <p className="text-center ">{t("noItems")}</p>
+      )}
+      {loading ? (
+        <Spinner />
+      ) : (
         <div>
           {merch.map((merchItem) => (
             <div
@@ -43,7 +53,7 @@ const MerchPage = () => {
             </div>
           ))}
         </div>
-      </h2>
+      )}
     </div>
   );
 };

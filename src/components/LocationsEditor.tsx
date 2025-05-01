@@ -27,7 +27,7 @@ const LocationsEditor = () => {
   // fetch LOCATION data
   useEffect(() => {
     axios
-      .get("https://qahwablk-backend-1.onrender.com/locations")
+      .get("https://qahwablk-backend.onrender.com/locations")
       .then((res) => {
         setLocations(res.data);
       })
@@ -42,7 +42,7 @@ const LocationsEditor = () => {
 
       axios
         .put(
-          `https://qahwablk-backend-1.onrender.com/locations/${editingItem._id}`,
+          `https://qahwablk-backend.onrender.com/locations/${editingItem._id}`,
           updatedItem
         )
         .then(() => {
@@ -75,7 +75,7 @@ const LocationsEditor = () => {
       reset();
 
       axios
-        .post("https://qahwablk-backend-1.onrender.com/locations", data)
+        .post("https://qahwablk-backend.onrender.com/locations", data)
         .then((res) => {
           showSuccessMessage("Item Added successfully.");
 
@@ -106,7 +106,7 @@ const LocationsEditor = () => {
     setLocations(locations.filter((i) => i._id !== item._id));
 
     axios
-      .delete(`https://qahwablk-backend-1.onrender.com/locations/${item._id}`)
+      .delete(`https://qahwablk-backend.onrender.com/locations/${item._id}`)
       .then(() => {
         showSuccessMessage("Item deleted successfully.");
       })

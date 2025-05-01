@@ -15,7 +15,7 @@ const MenuPage = () => {
 
   useEffect(() => {
     axios
-      .get("https://qahwablk-backend-1.onrender.com/menu")
+      .get("https://qahwablk-backend.onrender.com/menu")
       .then((res) => {
         const groupedMenu = res.data.reduce(
           (acc: { category: string; items: Menu[] }[], menuItem: Menu) => {

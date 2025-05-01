@@ -16,7 +16,7 @@ const LocationsPage = () => {
 
   useEffect(() => {
     axios
-      .get("https://qahwablk-backend-1.onrender.com/merch")
+      .get("https://qahwablk-backend.onrender.com/merch")
       .then((res) => {
         console.log(res.data);
         setLocations(res.data);

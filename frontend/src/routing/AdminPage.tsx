@@ -88,7 +88,7 @@ const AdminPage = () => {
         {/* Logout Button */}
         <button
           onClick={handleLogout}
-          className="mt-6 w-full bg-red-600 text-white py-2 rounded-lg font-semibold hover:bg-red-700 transition"
+          className="mt-6 w-full bg-red-500 text-white py-2 rounded-lg font-semibold hover:bg-red-600 transition cursor-pointer"
         >
           {t("logout")}
         </button>

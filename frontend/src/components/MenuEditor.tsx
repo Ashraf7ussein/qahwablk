@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import Spinner from "./Spinner";
 
 interface FormData {
   arName: string;
@@ -23,6 +24,7 @@ const MenuEditor = () => {
   const [editingItem, setEditingItem] = useState<Menu | null>(null);
   const [editMode, setEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
 
   const showSuccessMessage = (message: string) => {
@@ -34,15 +36,18 @@ const MenuEditor = () => {
 
   // fetch menu data
   useEffect(() => {
+    setLoading(true);
     axios
       .get("https://qahwablk-backend.onrender.com/menu")
       .then((res) => {
         setMenu(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   const onSubmit = (data: FormData) => {
+    setLoading(true);
     if (editingItem) {
       // Editing existing item
       const updatedItem = { ...editingItem, ...data };
@@ -66,7 +71,8 @@ const MenuEditor = () => {
         })
         .catch((err) => {
           console.error("Error updating item:", err);
-        });
+        })
+        .finally(() => setLoading(false));
     } else {
       // Add new item
       const newItem = {
@@ -103,7 +109,8 @@ const MenuEditor = () => {
           console.error("Error posting to menu:", err);
 
           setMenu(prevMenu);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   };
 
@@ -231,6 +238,11 @@ const MenuEditor = () => {
       </div>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        {loading && (
+          <div className="flex justify-center items-center py-4">
+            <Spinner />
+          </div>
+        )}
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>

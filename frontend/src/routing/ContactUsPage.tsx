@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import ToastNotification from "../components/ToastNotification";
 
 const ContactUsPage = () => {
   const { t } = useTranslation();
@@ -16,7 +17,6 @@ const ContactUsPage = () => {
       .string()
       .regex(/^(0|\+962)7[987]\d{7}$/, { message: t("phone_invalid") }),
     email: z.string().email({ message: t("email_invalid") }),
-
     topic: z.string().min(3, { message: t("topic_min") }),
   });
 
@@ -29,14 +29,13 @@ const ContactUsPage = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const [result, setResult] = useState<string | null>(null);
   const [isSending, setIsSending] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState<"success" | "error">("success");
 
   const onSubmit = async (data: FormData) => {
     setIsSending(true);
-    setResult(null);
-    setIsSuccess(false);
+    setToastMessage("");
 
     const formData = new FormData();
     formData.append("name", data.name);
@@ -54,21 +53,18 @@ const ContactUsPage = () => {
       const responseData = await response.json();
 
       if (responseData.success) {
-        setResult("Form Submitted Successfully!");
-        setIsSuccess(true);
+        setToastMessage("Form Submitted Successfully!");
+        setToastType("success");
         reset();
       } else {
-        setResult(responseData.message);
-        setIsSuccess(false);
+        setToastMessage("Submission failed, please try again.");
+        setToastType("error");
       }
     } catch (error) {
-      setResult("Something went wrong. Please try again later.");
-      setIsSuccess(false);
+      setToastMessage("Something went wrong. Please try again later.");
+      setToastType("error");
     } finally {
       setIsSending(false);
-      setTimeout(() => {
-        setResult(null);
-      }, 5000);
     }
   };
 
@@ -171,17 +167,12 @@ const ContactUsPage = () => {
         >
           {isSending ? t("sending") : t("submit")}
         </button>
-
-        {result && (
-          <p
-            className={`text-center text-sm mt-4 ${
-              isSuccess ? "text-green-500" : "text-red-500"
-            }`}
-          >
-            {result}
-          </p>
-        )}
       </form>
+
+      {/* Toast Notification */}
+      {toastMessage && (
+        <ToastNotification message={toastMessage} type={toastType} />
+      )}
     </div>
   );
 };

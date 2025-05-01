@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import logo from "../assets/logo.webp";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import ToastNotification from "../components/ToastNotification";
 
 const CareersPage = () => {
   const { t } = useTranslation();
@@ -62,14 +63,18 @@ const CareersPage = () => {
     formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
-  const [result, setResult] = useState<string | null>(null);
   const [isSending, setIsSending] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [toastType, setToastType] = useState<"success" | "error">("success");
 
   const onSubmit = async (data: FormData) => {
     setIsSending(true);
-    setResult(null);
-    setIsSuccess(false);
+    setToastMessage("");
+
+    console.log(errors); // Log errors to check if validation is causing issues
+    if (Object.keys(errors).length > 0) {
+      return; // Skip submission if there are validation errors
+    }
 
     const formData = new FormData();
     formData.append("full name", data.name);
@@ -96,21 +101,18 @@ const CareersPage = () => {
       const responseData = await response.json();
 
       if (responseData.success) {
-        setResult("Form Submitted Successfully!");
-        setIsSuccess(true);
+        setToastMessage("Form Submitted Successfully!");
+        setToastType("success");
         reset();
       } else {
-        setResult(responseData.message);
-        setIsSuccess(false);
+        setToastMessage("Submission failed, please try again.");
+        setToastType("error");
       }
     } catch (error) {
-      setResult("Something went wrong. Please try again later.");
-      setIsSuccess(false);
+      setToastMessage("Something went wrong. Please try again later.");
+      setToastType("error");
     } finally {
       setIsSending(false);
-      setTimeout(() => {
-        setResult(null);
-      }, 5000); // Remove the message after 5 seconds
     }
   };
 
@@ -657,17 +659,11 @@ const CareersPage = () => {
         >
           {isSending ? t("sending") : t("submit")}
         </button>
-
-        {result && (
-          <p
-            className={`text-center text-sm mt-4 ${
-              isSuccess ? "text-green-500" : "text-red-500"
-            }`}
-          >
-            {result}
-          </p>
-        )}
       </form>
+      {/* Toast Notification */}
+      {toastMessage && (
+        <ToastNotification message={toastMessage} type={toastType} />
+      )}
     </div>
   );
 };

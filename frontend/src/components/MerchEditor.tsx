@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import Spinner from "./Spinner";
 
 interface FormData {
   arName: string;
@@ -22,15 +23,18 @@ const MerchEditor = () => {
   const [editMode, setEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const { register, handleSubmit, reset } = useForm<FormData>();
+  const [loading, setLoading] = useState(false);
 
   // fetch MERCH data
   useEffect(() => {
+    setLoading(true);
     axios
       .get("https://qahwablk-backend.onrender.com/merch")
       .then((res) => {
         setMerch(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   // add ane edit merch data
@@ -58,7 +62,8 @@ const MerchEditor = () => {
         })
         .catch((err) => {
           console.error("Error updating item:", err);
-        });
+        })
+        .finally(() => setLoading(false));
     } else {
       // Add new item
       const newItem = {
@@ -94,7 +99,8 @@ const MerchEditor = () => {
           console.error("Error posting to merch menu:", err);
 
           setMerch(prevMenu);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   };
 
@@ -113,7 +119,8 @@ const MerchEditor = () => {
         console.error("Error deleting from merch:", err);
 
         setMerch(prevMenu);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const showSuccessMessage = (message: string) => {
@@ -206,6 +213,11 @@ const MerchEditor = () => {
       </div>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        {loading && (
+          <div className="flex justify-center items-center py-4">
+            <Spinner />
+          </div>
+        )}
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>

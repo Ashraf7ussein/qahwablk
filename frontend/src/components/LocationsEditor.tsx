@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import Spinner from "./Spinner";
 
 interface FormData {
   arName: string;
@@ -23,19 +24,23 @@ const LocationsEditor = () => {
   const [editMode, setEditMode] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const { register, handleSubmit, reset } = useForm<FormData>();
+  const [loading, setLoading] = useState(false);
 
   // fetch LOCATION data
   useEffect(() => {
+    setLoading(true);
     axios
       .get("https://qahwablk-backend.onrender.com/locations")
       .then((res) => {
         setLocations(res.data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   // add and edit location data
   const onSubmit = (data: FormData) => {
+    setLoading(true);
     if (editingItem) {
       // Editing existing item
       const updatedItem = { ...editingItem, ...data };
@@ -59,7 +64,8 @@ const LocationsEditor = () => {
         })
         .catch((err) => {
           console.error("Error updating item:", err);
-        });
+        })
+        .finally(() => setLoading(false));
     } else {
       // Add new item
       const newItem = {
@@ -95,7 +101,8 @@ const LocationsEditor = () => {
           console.error("Error posting to merch menu:", err);
 
           setLocations(prevMenu);
-        });
+        })
+        .finally(() => setLoading(false));
     }
   };
 
@@ -114,7 +121,8 @@ const LocationsEditor = () => {
         console.error("Error deleting from merch:", err);
 
         setLocations(prevMenu);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const showSuccessMessage = (message: string) => {
@@ -207,6 +215,11 @@ const LocationsEditor = () => {
       </div>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        {loading && (
+          <div className="flex justify-center items-center py-4">
+            <Spinner />
+          </div>
+        )}
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>

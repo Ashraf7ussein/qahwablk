@@ -8,7 +8,6 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 
 const socialLinks = [
   {
@@ -58,7 +57,6 @@ const socialLinks = [
 
 const Footer = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
 
   return (
     <footer className="text-white border-t pt-6 pb-6">

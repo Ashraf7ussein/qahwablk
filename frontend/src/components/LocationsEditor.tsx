@@ -59,6 +59,8 @@ const LocationsEditor = () => {
             )
           );
 
+          setEditingItem(null);
+          setEditMode(false);
           reset();
           console.log("Item updated successfully");
         })
@@ -137,7 +139,7 @@ const LocationsEditor = () => {
       </h2>
       <div className="p-3 relative overflow-x-auto shadow-md sm:rounded-lg mb-5">
         <p className="mb-5 font-medium text-xl">
-          {editMode ? t("updatedMerchItem") : t("newMerchItem")}
+          {editMode ? t("updatedLocationItem") : t("newLocationItem")}
         </p>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-5">
@@ -198,7 +200,7 @@ const LocationsEditor = () => {
               type="submit"
               className="w-full font-semibold text-lg py-2 rounded-lg mt-4 hover:cursor-pointer bg-blue-500 hover:bg-blue-600 text-white"
             >
-              {editingItem ? t("editItem") : t("addItem")}
+              {editingItem ? t("saveChanges") : t("addItem")}
             </button>
             {editMode && (
               <button

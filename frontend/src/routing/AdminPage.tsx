@@ -57,7 +57,7 @@ const AdminPage = () => {
         {/* Navigation Buttons */}
         <button
           onClick={() => setActiveEditor("menu")}
-          className={`text-gray-900 w-full text-start px-4 py-2 mb-2 rounded hover:bg-gray-200 ${
+          className={`text-gray-900 w-full text-start px-4 py-2 mb-2 rounded hover:bg-gray-200 hover:cursor-pointer border-1 border-gray-200 ${
             activeEditor === "menu" ? "bg-gray-300 font-semibold" : ""
           }`}
           aria-pressed={activeEditor === "menu"}
@@ -67,7 +67,7 @@ const AdminPage = () => {
 
         <button
           onClick={() => setActiveEditor("merch")}
-          className={`text-gray-900 w-full text-start px-4 py-2 mb-2 rounded hover:bg-gray-200 ${
+          className={`text-gray-900 w-full text-start px-4 py-2 mb-2 rounded hover:bg-gray-200  hover:cursor-pointer border-1 border-gray-200 ${
             activeEditor === "merch" ? "bg-gray-300 font-semibold" : ""
           }`}
           aria-pressed={activeEditor === "merch"}
@@ -77,7 +77,7 @@ const AdminPage = () => {
 
         <button
           onClick={() => setActiveEditor("locations")}
-          className={`text-gray-900 w-full text-start px-4 py-2 mb-2 rounded hover:bg-gray-200 ${
+          className={`text-gray-900 w-full text-start px-4 py-2 mb-2 rounded hover:bg-gray-200  hover:cursor-pointer border-1 border-gray-200 ${
             activeEditor === "locations" ? "bg-gray-300 font-semibold" : ""
           }`}
           aria-pressed={activeEditor === "locations"}

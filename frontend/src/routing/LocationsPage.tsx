@@ -12,13 +12,15 @@ interface Locations {
 }
 
 const LocationsPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [locations, setLocations] = useState<Locations[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
+  const currentLanguage = i18n.language;
+
   useEffect(() => {
     axios
-      .get("https://qahwablk-backend.onrender.com/merch")
+      .get("https://qahwablk-backend.onrender.com/locations")
       .then((res) => {
         console.log(res.data);
         setLocations(res.data);
@@ -49,7 +51,9 @@ const LocationsPage = () => {
               style={{ backgroundColor: "rgb(42, 50, 53)" }}
               className="flex items-center justify-between p-4 rounded-lg duration-300 hover:scale-105 transition w-full text-sm sm:text-base"
             >
-              <span className="truncate">{loc.enName}</span>
+              <span className="truncate">
+                {currentLanguage === "ar" ? loc.arName : loc.enName}
+              </span>
               <FaLocationArrow className="text-white flex-shrink-0 ml-2" />
             </a>
           ))}

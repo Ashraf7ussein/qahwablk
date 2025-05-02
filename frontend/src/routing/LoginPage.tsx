@@ -19,6 +19,8 @@ const LoginPage = () => {
   const [passwordVisible, setPasswordVisibility] = useState(false);
   const [authError, setAuthError] = useState("");
   const [resetMessage, setResetMessage] = useState("");
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
   const navigate = useNavigate();
 
   const loginSchema = z.object({
@@ -102,7 +104,7 @@ const LoginPage = () => {
 
     try {
       await sendPasswordResetEmail(auth, emailValue);
-      setResetMessage(t("resetEmailSent")); // Set success message for reset
+      setResetMessage(t("resetEmailSent"));
     } catch (error: any) {
       console.error("Reset password error:", error.code);
       setAuthError(getFriendlyError(error.code));
@@ -170,6 +172,49 @@ const LoginPage = () => {
             </p>
           )}
         </div>
+
+        {!isLogin && (
+          <div className="mb-5">
+            <label
+              className="block text-gray-700 mb-1"
+              htmlFor="confirmPassword"
+            >
+              {t("confirmPassword")}
+            </label>
+            <div className="relative flex items-center">
+              <input
+                id="confirmPassword"
+                type={confirmPasswordVisible ? "text" : "password"}
+                {...register("confirmPassword")}
+                className="w-full p-2.5 pr-10 rounded border text-black border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {confirmPasswordVisible ? (
+                <FaEye
+                  size={18}
+                  color="gray"
+                  className="absolute right-3 cursor-pointer"
+                  onClick={() =>
+                    setConfirmPasswordVisible(!confirmPasswordVisible)
+                  }
+                />
+              ) : (
+                <FaEyeSlash
+                  size={18}
+                  color="gray"
+                  className="absolute right-3 cursor-pointer"
+                  onClick={() =>
+                    setConfirmPasswordVisible(!confirmPasswordVisible)
+                  }
+                />
+              )}
+            </div>
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.confirmPassword.message}
+              </p>
+            )}
+          </div>
+        )}
 
         {isLogin && (
           <div className="mb-5 text-right">

@@ -90,6 +90,8 @@ const resources = {
       logout: "Logout",
       noItems: "No items found",
       itemUpdatedSuccess: "Item updated successfully.",
+      itemAddedSuccess: "Item added successfully.",
+      itemDeleteSuccess: "Item deleted successfully.",
     },
   },
   ar: {
@@ -101,7 +103,7 @@ const resources = {
       merchandise: "المنتجات",
       locations: "المواقع",
       careers: "الوظائف",
-      contactUs: "اتصل بنا",
+      contactUs: "تواصل معنا",
       deliciousCoffee: "قهوة لذيذة ، كل يوم ، للجميع ، بأسعار معقولة.",
       seeMenu: "رؤية القائمة",
       aboutQahwaBlk: "عن قهوة بلاك",
@@ -179,6 +181,8 @@ const resources = {
       logout: "تسجيل الخروج",
       noItems: "لا توجد عناصر",
       itemUpdatedSuccess: "تم التعديل بنجاح",
+      itemAddedSuccess: "تم اضافة العنصر بنجاح",
+      itemDeleteSuccess: "تم حذف العنصر بنجاح",
     },
   },
 };

@@ -49,9 +49,6 @@ const CareersPage = () => {
     }),
     favoriteDrink: z.string().min(1, { message: t("drink_required") }),
     whyWorkWithUs: z.string().min(1, { message: t("join_reason_required") }),
-    photo: z
-      .instanceof(FileList)
-      .refine((files) => files.length > 0, { message: t("photo_upload") }),
   });
 
   type FormData = z.infer<typeof schema>;
@@ -89,7 +86,6 @@ const CareersPage = () => {
     formData.append("working Experience", data.workingExperience);
     formData.append("favorite Drink", data.favoriteDrink);
     formData.append("why Working With Us", data.whyWorkWithUs);
-    // formData.append("photo of you", data.photo[0]);
     formData.append("access_key", "214a594d-9ad5-44eb-9604-5d9124f665ee");
 
     try {
@@ -626,26 +622,6 @@ const CareersPage = () => {
             </p>
           )}
         </div>
-
-        {/* Photo Field */}
-        {/* <div className="mb-10">
-          <label
-            htmlFor="photo"
-            className="block mb-2 text-lg font-medium text-gray-900"
-          >
-            Photo of yourself - صورة الك *
-          </label>
-          <input
-            type="file"
-            id="photo"
-            {...register("photo")}
-            accept="image/*"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:outline-none focus:border-blue-500 block w-full p-2.5"
-          />
-          {errors.photo && (
-            <p className="text-red-500 text-sm mt-1">{errors.photo.message}</p>
-          )}
-        </div> */}
 
         {/* Submit Button */}
         <button

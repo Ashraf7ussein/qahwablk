@@ -13,7 +13,7 @@ const socialLinks = [
   {
     name: "Facebook",
     icon: FaFacebookF,
-    link: "https://www.linkedin.com/company/qahwablk/?originalSubdomain=jo",
+    link: "https://www.facebook.com/qahwablk/",
     hoverColor: "hover:text-blue-600",
   },
 
@@ -44,7 +44,7 @@ const socialLinks = [
   {
     name: "LinkedIn",
     icon: FaLinkedin,
-    link: "https://www.facebook.com/qahwablk/",
+    link: "https://www.linkedin.com/company/qahwablk/?originalSubdomain=jo",
     hoverColor: "hover:text-blue-600",
   },
   {

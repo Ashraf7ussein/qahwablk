@@ -49,7 +49,7 @@ const MerchEditor = () => {
           updatedItem
         )
         .then(() => {
-          showSuccessMessage("Item updated successfully.");
+          showSuccessMessage(t("itemUpdatedSuccess"));
 
           setMerch((prevMenu) =>
             prevMenu.map((item) =>
@@ -82,7 +82,7 @@ const MerchEditor = () => {
       axios
         .post("https://qahwablk-backend.onrender.com/merch", data)
         .then((res) => {
-          showSuccessMessage("Item Added successfully.");
+          showSuccessMessage(t("itemAddedSuccess"));
 
           const updatedItem = {
             ...newItem,
@@ -114,7 +114,7 @@ const MerchEditor = () => {
     axios
       .delete(`https://qahwablk-backend.onrender.com/merch/${item._id}`)
       .then(() => {
-        showSuccessMessage("Item deleted successfully.");
+        showSuccessMessage(t("itemDeleteSuccess"));
       })
       .catch((err) => {
         console.error("Error deleting from merch:", err);

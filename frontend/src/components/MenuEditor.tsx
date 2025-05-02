@@ -58,7 +58,7 @@ const MenuEditor = () => {
           updatedItem
         )
         .then(() => {
-          showSuccessMessage("itemUpdatedSuccess");
+          showSuccessMessage(t("itemUpdatedSuccess"));
 
           setMenu((prevMenu) =>
             prevMenu.map((item) =>
@@ -93,7 +93,7 @@ const MenuEditor = () => {
       axios
         .post("https://qahwablk-backend.onrender.com/menu", data)
         .then((res) => {
-          showSuccessMessage("Item Added successfully.");
+          showSuccessMessage(t("itemAddedSuccess"));
 
           const updatedItem = {
             ...newItem,
@@ -125,7 +125,7 @@ const MenuEditor = () => {
     axios
       .delete(`https://qahwablk-backend.onrender.com/menu/${item._id}`)
       .then(() => {
-        showSuccessMessage("Item deleted successfully.");
+        showSuccessMessage(t("itemDeleteSuccess"));
       })
       .catch((err) => {
         console.error("Error deleting from menu:", err);

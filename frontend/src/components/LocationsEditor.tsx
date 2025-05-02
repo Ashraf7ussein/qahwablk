@@ -51,7 +51,7 @@ const LocationsEditor = () => {
           updatedItem
         )
         .then(() => {
-          showSuccessMessage("Item updated successfully.");
+          showSuccessMessage(t("itemUpdatedSuccess"));
 
           setLocations((prevMenu) =>
             prevMenu.map((item) =>
@@ -85,7 +85,7 @@ const LocationsEditor = () => {
       axios
         .post("https://qahwablk-backend.onrender.com/locations", data)
         .then((res) => {
-          showSuccessMessage("Item Added successfully.");
+          showSuccessMessage(t("itemAddedSuccess"));
 
           const updatedItem = {
             ...newItem,
@@ -117,7 +117,7 @@ const LocationsEditor = () => {
     axios
       .delete(`https://qahwablk-backend.onrender.com/locations/${item._id}`)
       .then(() => {
-        showSuccessMessage("Item deleted successfully.");
+        showSuccessMessage(t("itemDeleteSuccess"));
       })
       .catch((err) => {
         console.error("Error deleting from merch:", err);

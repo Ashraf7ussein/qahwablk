@@ -128,6 +128,12 @@ const MerchEditor = () => {
     setSuccessMessage(message);
     setTimeout(() => setSuccessMessage(null), 3000); // auto-hide after 3 seconds
   };
+
+  const handleCancel = () => {
+    setEditingItem(null);
+    setEditMode(false);
+    reset();
+  };
   return (
     <div className="bg-white text-black p-6 pt-20">
       <h2 className="text-2xl font-medium mb-6 text-center pt-10">
@@ -202,9 +208,7 @@ const MerchEditor = () => {
             {editMode && (
               <button
                 className="w-full font-semibold text-lg py-2 rounded-lg mt-4 hover:cursor-pointer bg-gray-500 hover:bg-gray-600 text-white"
-                onClick={() => {
-                  setEditMode(false);
-                }}
+                onClick={() => handleCancel()}
               >
                 {t("cancelEdit")}
               </button>

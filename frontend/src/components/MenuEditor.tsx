@@ -58,7 +58,7 @@ const MenuEditor = () => {
           updatedItem
         )
         .then(() => {
-          showSuccessMessage("Item updated successfully.");
+          showSuccessMessage("itemUpdatedSuccess");
 
           setMenu((prevMenu) =>
             prevMenu.map((item) =>
@@ -132,6 +132,12 @@ const MenuEditor = () => {
 
         setMenu(prevMenu);
       });
+  };
+
+  const handleCancel = () => {
+    setEditingItem(null);
+    setEditMode(false);
+    reset();
   };
 
   return (
@@ -228,9 +234,7 @@ const MenuEditor = () => {
             {editMode && (
               <button
                 className="w-full font-semibold text-lg py-2 rounded-lg mt-4 hover:cursor-pointer bg-gray-500 hover:bg-gray-600 text-white"
-                onClick={() => {
-                  setEditMode(false);
-                }}
+                onClick={() => handleCancel()}
               >
                 {t("cancelEdit")}
               </button>

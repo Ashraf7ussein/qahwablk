@@ -89,6 +89,7 @@ const resources = {
       location: "Location",
       logout: "Logout",
       noItems: "No items found",
+      itemUpdatedSuccess: "Item updated successfully.",
     },
   },
   ar: {
@@ -173,11 +174,12 @@ const resources = {
       updatedLocationItem: "تحديث الموقع",
       enterValidEmail:
         "يرجى إدخال بريد إلكتروني صالح لإعادة تعيين كلمة المرور.",
+      forgotPassword: "نسيت كلمة المرور؟",
+      location: "الموقع",
+      logout: "تسجيل الخروج",
+      noItems: "لا توجد عناصر",
+      itemUpdatedSuccess: "تم التعديل بنجاح",
     },
-    forgotPassword: "نسيت كلمة المرور؟",
-    location: "الموقع",
-    logout: "تسجيل الخروج",
-    noItems: "لا توجد عناصر",
   },
 };
 
